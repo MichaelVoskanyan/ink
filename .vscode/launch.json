@@ -1,0 +1,25 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Debug (Windows)",
+        "type": "cppvsdbg",
+        "request": "launch",
+        "program": "${workspaceFolder}/build/Debug/Ink.exe",
+        "args": [ ],
+        "stopAtEntry": false,
+        "cwd": "${workspaceFolder}",
+        "environment": [ ],
+        "externalConsole": false,
+        "preLaunchTask": "build",
+      },
+      {
+        "name":"Debug (MacOS)",
+        "type":"lldb",
+        "request":"launch",
+        "program":"${workspaceFoler}/build/Ink",
+        "preLaunchTask": "build",
+        "externalConsole":false,
+      }
+    ]
+  }

@@ -1,0 +1,3 @@
+C:/Users/micha/Documents/Projects/ink/build/CMakeFiles/Ink.dir
+C:/Users/micha/Documents/Projects/ink/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/micha/Documents/Projects/ink/build/CMakeFiles/ZERO_CHECK.dir
