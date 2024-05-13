@@ -1,7 +1,20 @@
 # Progress Log
 
+## 5/12/2024
+
+- Created abstractions for Vertex Array, Vertex Buffer, and Element Buffer objects.
+- Implemented draw triangle using new renderer abstractions
+- Implemented abstractions for creating GLFW Window
+
+### TODO
+
+- [ ] Create abstractions for render queue
+
 ## 5/10/2024
 
 - Made Triangle
 
-## Roadmap
+### TODO
+
+- [ ] Set up game phyics
+- [X] Renderer abstractions

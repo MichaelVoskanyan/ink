@@ -1,4 +1,8 @@
+C:\Users\micha\Documents\Projects\ink\ink\src\renderer\vertexBuffer.cpp;C:\Users\micha\Documents\Projects\ink\build\Ink.dir\Debug\vertexBuffer.obj
+C:\Users\micha\Documents\Projects\ink\ink\src\renderer\elementBuffer.cpp;C:\Users\micha\Documents\Projects\ink\build\Ink.dir\Debug\elementBuffer.obj
+C:\Users\micha\Documents\Projects\ink\ink\src\renderer\vertexArray.cpp;C:\Users\micha\Documents\Projects\ink\build\Ink.dir\Debug\vertexArray.obj
 C:\Users\micha\Documents\Projects\ink\vendor\glad\src\glad.c;C:\Users\micha\Documents\Projects\ink\build\Ink.dir\Debug\glad.obj
+C:\Users\micha\Documents\Projects\ink\ink\src\core\window.cpp;C:\Users\micha\Documents\Projects\ink\build\Ink.dir\Debug\window.obj
 C:\Users\micha\Documents\Projects\ink\ink\src\core\shader.cpp;C:\Users\micha\Documents\Projects\ink\build\Ink.dir\Debug\shader.obj
 C:\Users\micha\Documents\Projects\ink\ink\src\core\camera.cpp;C:\Users\micha\Documents\Projects\ink\build\Ink.dir\Debug\camera.obj
 C:\Users\micha\Documents\Projects\ink\ink\src\core\main.cpp;C:\Users\micha\Documents\Projects\ink\build\Ink.dir\Debug\main.obj

@@ -16,11 +16,21 @@ link_directories(
 
 link_libraries(glfw3)
 
+set(SOURCE_RENDERER
+    "ink/src/renderer/vertexBuffer.cpp"
+    "ink/src/renderer/elementBuffer.cpp"
+    "ink/src/renderer/vertexArray.cpp"
+)
+
 set(SOURCE
     "vendor/glad/src/glad.c"
+    "ink/src/core/window.cpp"
     "ink/src/core/shader.cpp"
     "ink/src/core/camera.cpp"
     "ink/src/core/main.cpp"
 )
 
-add_executable(Ink ${SOURCE})
+add_executable(Ink 
+    ${SOURCE_RENDERER}
+    ${SOURCE}
+)
