@@ -10,11 +10,16 @@ include_directories(
     "ink/include"
 )
 
-link_directories(
-    "vendor/glfw/lib-vc2022"
-)
+add_subdirectory(vendor/glfw)
 
-link_libraries(glfw3)
+link_directories("vendor/glfw/src/Debug")
+
+link_libraries(glfw)
+
+set (GLFW_BUILD_EXAMPLES OFF CACHE INTERNAL "Build the GLFW example programs")
+set (GLFW_BUILD_TESTS OFF CACHE INTERNAL "Build the GLFW test programs")
+set (GLFW_BUILD_DOCS OFF CACHE INTERNAL "Build the GLFW documentations")
+set (GLFW_INSTALL OFF CACHE INTERNAL "Generate installation target")
 
 set(SOURCE_RENDERER
     "ink/src/renderer/vertexBuffer.cpp"

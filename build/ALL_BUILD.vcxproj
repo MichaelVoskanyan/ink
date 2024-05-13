@@ -177,6 +177,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{CBCE5D4B-D162-3B84-B180-D6469231150A}</Project>
       <Name>Ink</Name>
     </ProjectReference>
+    <ProjectReference Include="C:\Users\micha\Documents\Projects\ink\build\vendor\glfw\src\glfw.vcxproj">
+      <Project>{CD1B2732-C2DE-3593-A441-BE564120A41B}</Project>
+      <Name>glfw</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
