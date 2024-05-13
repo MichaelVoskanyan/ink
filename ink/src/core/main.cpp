@@ -1,8 +1,11 @@
+#include <renderer/vertexArray.h>
+
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
 #include <core/shader.h>
 #include <core/camera.h>
+#include <core/window.h>
 
 #include <glm/glm.hpp>
 
@@ -15,32 +18,14 @@ uint16_t WIDTH = 800, HEIGHT = 600;
 char* TITLE = "Ink";
 
 int main(int argc, char **argv) {
-    if (!glfwInit()) {
-        std::cerr << "Failed to initialize GLFW\n";
-        exit(EXIT_FAILURE);
-    }
 
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    auto wnd = new Window();
+    wnd->i_windowHeight = HEIGHT;
+    wnd->i_windowWidth = WIDTH;
+    wnd->s_windowTitle = TITLE;
 
-    GLFWwindow *window = glfwCreateWindow(WIDTH, HEIGHT, TITLE, NULL, NULL);
-
-    if (!window) {
-        std::cerr << "Failed to create GLFW window\n";
-        glfwTerminate();
-        exit(EXIT_FAILURE);
-    }
-
-    glfwMakeContextCurrent(window);
-
-    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-        std::cerr << "Failed to initialize GLAD\n";
-        exit(EXIT_FAILURE);
-    }
-
-    glViewport(0, 0, WIDTH, HEIGHT);
-    glClearColor(.5f, .25f, 0.f, 1.f);
+    wnd->InitWindow();
+    
 
     std::vector<float> verts = {
         -0.5f, -0.5f, 0.f, 
@@ -50,19 +35,7 @@ int main(int argc, char **argv) {
 
     std::vector<uint> inds = { 0, 1, 2 };
 
-    uint VAO, VBO, IBO;
-
-    glGenVertexArrays(1, &VAO);
-    glBindVertexArray(VAO);
-
-    glGenBuffers(1, &VBO);
-    glGenBuffers(1, &IBO);
-
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, verts.size() * sizeof(float), &verts[0], GL_STATIC_DRAW);
-
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, inds.size() * sizeof(uint), &inds[0], GL_STATIC_DRAW);
+    auto va = VertexArray::Create(verts, inds);
 
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
@@ -82,7 +55,7 @@ int main(int argc, char **argv) {
     // ---------
     // MAIN LOOP
     // ---------
-    while (!glfwWindowShouldClose(window)) {
+    while (!glfwWindowShouldClose(wnd->h_window)) {
         glClear(GL_COLOR_BUFFER_BIT);
 
         // rendering bullshittery
@@ -92,12 +65,12 @@ int main(int argc, char **argv) {
         mvp *= model;
 
         shader->setMat4("MVP", mvp);
-        glBindVertexArray(VAO);
-        glDrawElements(GL_TRIANGLES, inds.size(), GL_UNSIGNED_INT, (void*)NULL);
+        va->Bind();
+        glDrawElements(GL_TRIANGLES, va->GetCount(), GL_UNSIGNED_INT, (void*)NULL);
 
 
         glfwPollEvents();
-        glfwSwapBuffers(window);
+        glfwSwapBuffers(wnd->h_window);
     }
 
     return 0;
