@@ -1,5 +1,13 @@
 # Progress Log
 
+## 5/13/2024
+
+### TODO
+- [ ] Implement render queue
+- [ ] Implement mesh class
+- [ ] Implement transform class
+- [ ] Implement texture imports
+
 ## 5/12/2024
 
 - Created abstractions for Vertex Array, Vertex Buffer, and Element Buffer objects.
