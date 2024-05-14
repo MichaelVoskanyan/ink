@@ -2,6 +2,7 @@
 #define INK_ELEMENTBUFFER_H
 
 #include <vector>
+#include <stdint.h>
 #include <iostream>
 
 class ElementBuffer {

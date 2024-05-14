@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <iostream>
+#include <stdint.h>
 
 typedef uint32_t uint;
 
