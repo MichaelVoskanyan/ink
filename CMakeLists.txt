@@ -25,6 +25,8 @@ set(SOURCE_RENDERER
     "ink/src/renderer/vertexBuffer.cpp"
     "ink/src/renderer/elementBuffer.cpp"
     "ink/src/renderer/vertexArray.cpp"
+    "ink/src/renderer/renderObject.cpp"
+    "ink/src/renderer/renderer.cpp"
 )
 
 set(SOURCE

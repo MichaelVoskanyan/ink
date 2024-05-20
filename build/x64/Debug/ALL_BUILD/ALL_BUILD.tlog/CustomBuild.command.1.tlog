@@ -1,6 +1,6 @@
-^C:\USERS\MICHA\DOCUMENTS\PROJECTS\INK\CMAKELISTS.TXT
+^C:\DEV\INK\CMAKELISTS.TXT
 setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/micha/Documents/Projects/ink -BC:/Users/micha/Documents/Projects/ink/build --check-stamp-file C:/Users/micha/Documents/Projects/ink/build/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Dev/ink -BC:/Dev/ink/build --check-stamp-file C:/Dev/ink/build/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone

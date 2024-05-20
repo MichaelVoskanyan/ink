@@ -1,6 +1,6 @@
-C:/Users/micha/Documents/Projects/ink/build/CMakeFiles/Ink.dir
-C:/Users/micha/Documents/Projects/ink/build/CMakeFiles/ALL_BUILD.dir
-C:/Users/micha/Documents/Projects/ink/build/CMakeFiles/ZERO_CHECK.dir
-C:/Users/micha/Documents/Projects/ink/build/vendor/glfw/CMakeFiles/ALL_BUILD.dir
-C:/Users/micha/Documents/Projects/ink/build/vendor/glfw/src/CMakeFiles/update_mappings.dir
-C:/Users/micha/Documents/Projects/ink/build/vendor/glfw/src/CMakeFiles/glfw.dir
+C:/Dev/ink/build/CMakeFiles/Ink.dir
+C:/Dev/ink/build/CMakeFiles/ALL_BUILD.dir
+C:/Dev/ink/build/CMakeFiles/ZERO_CHECK.dir
+C:/Dev/ink/build/vendor/glfw/CMakeFiles/ALL_BUILD.dir
+C:/Dev/ink/build/vendor/glfw/src/CMakeFiles/update_mappings.dir
+C:/Dev/ink/build/vendor/glfw/src/CMakeFiles/glfw.dir

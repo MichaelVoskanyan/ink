@@ -32,5 +32,9 @@ VertexArray *VertexArray::Create(std::vector<float> verts, std::vector<uint32_t>
     glBindVertexArray(va->h_rendererID);
     va->h_vertexBuffer = VertexBuffer::Create(verts);
     va->h_elementBuffer = ElementBuffer::Create(elements);
+
+    
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
     return va;
 }

@@ -9,7 +9,6 @@ class ElementBuffer {
 private:
     uint32_t h_rendererID;
     uint32_t count;
-
 public:
     ElementBuffer();
     ~ElementBuffer();
