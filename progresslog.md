@@ -1,5 +1,8 @@
 # Progress Log
 
+## 5/24/2024
+- Implemented basic WASD movement
+
 ## 5/13/2024
 
 ### TODO
