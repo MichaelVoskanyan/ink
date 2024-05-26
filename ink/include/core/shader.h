@@ -19,12 +19,17 @@ namespace fs = std::filesystem;
 // clang-format on
 class Shader {
 public:
+  // ID or shader handle
   unsigned int ID;
 
+  // Constructor, must have path to vertex and fragment shaders. 
+  // Local path is accepted, must be prepended with '/'
   Shader(const char *vertexPath, const char *fragmentPath);
 
+  // Binds shader for use
   void use();
 
+  // Setting shader uniforms 
   void setBool(const std::string &name, bool value) const;
   void setInt(const std::string &name, int value) const;
   void setFloat(const std::string &name, float value) const;

@@ -5,6 +5,11 @@
 #include <stdint.h>
 #include <iostream>
 
+/**
+ * ElementBuffer class definition contains reference to the element buffer handle h_rendererID
+ * as well as uint32_t count (element count).
+*/
+
 class ElementBuffer {
 private:
     uint32_t h_rendererID;

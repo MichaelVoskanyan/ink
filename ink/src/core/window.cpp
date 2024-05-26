@@ -5,6 +5,10 @@
 
 #include <iostream>
 
+void framebuffer_size_callback(GLFWwindow *wind, int width, int height) {
+    glViewport(0, 0, width, height);
+}
+
 void Window::InitWindow() {
     if (!glfwInit()) {
         std::cerr << "Failed to initialize GLFW\n";
@@ -29,6 +33,8 @@ void Window::InitWindow() {
         std::cerr << "Failed to initialize GLAD\n";
         exit(EXIT_FAILURE);
     }
+
+    glfwSetFramebufferSizeCallback(h_window, framebuffer_size_callback);
 
     glViewport(0, 0, i_windowWidth, i_windowHeight);
     glClearColor(.5f, .25f, 0.f, 1.f);
