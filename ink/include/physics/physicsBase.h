@@ -19,22 +19,26 @@ class PhysicsBody {
 private:
     glm::vec3 _acceleration;
     glm::vec3 _velocity;
-
     glm::vec3 _position; // reference to world position of the object
+    glm::vec3 _size; // bounding box for collision detection
+    const int FRAMES_PER_SEC = 60; // 60 FPS for time deltas
+    const float GRAVITY = 9.81f; // acceleration due to gravity
 
 public:
-    void velocity(glm::vec3);
-    glm::vec3 velocity();
+    PhysicsBody();
+    PhysicsBody(glm::vec3 position, glm::vec3 size);
 
-    void acceleration(glm::vec3);
-    glm::vec3 acceleration();
+    void velocity(glm::vec3 v);
+    glm::vec3 velocity() const;
 
-
-    // Get and set world position of game object
-    void getPosition();     // returns void since it's going to update member position
-    void setPosition();     // type void because it will eventually be passed ref to the actual object position
-
-
+    void acceleration(glm::vec3 a);
+    glm::vec3 acceleration() const;
+    glm::vec3 size() const;
+    glm::vec3 position() const;
+    
+    void setPosition(glm::vec3 pos);
+    void updatePosition(float deltaTime);
+    void updateVelocity();
 };
 
 #endif // INK_PHYSICSBASE_H

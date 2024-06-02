@@ -29,6 +29,11 @@ set(SOURCE_RENDERER
     "ink/src/renderer/renderer.cpp"
 )
 
+set(SOURCE_PHYSICS
+    "ink/src/physics/physicsBase.cpp"
+    "ink/src/physics/physicsEngine.cpp"
+)
+
 set(SOURCE
     "vendor/glad/src/glad.c"
     "ink/src/core/window.cpp"
@@ -39,5 +44,6 @@ set(SOURCE
 
 add_executable(Ink 
     ${SOURCE_RENDERER}
+    ${SOURCE_PHYSICS}
     ${SOURCE}
 )
