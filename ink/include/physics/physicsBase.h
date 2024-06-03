@@ -22,7 +22,7 @@ private:
     glm::vec3 _position; // reference to world position of the object
     glm::vec3 _size; // bounding box for collision detection
     const int FRAMES_PER_SEC = 60; // 60 FPS for time deltas
-    const float GRAVITY = 9.81f; // acceleration due to gravity
+    const float GRAVITY = 0.1f; // acceleration due to gravity
 
 public:
     PhysicsBody();
@@ -38,6 +38,7 @@ public:
     
     void setPosition(glm::vec3 pos);
     void updatePosition(float deltaTime);
+    void updatePositionRef(float deltaTime, glm::vec3& position);
     void updateVelocity();
 };
 

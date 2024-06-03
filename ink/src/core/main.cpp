@@ -16,6 +16,7 @@
 
 #include <iostream>
 #include <vector>
+#include <memory>
 
 typedef uint32_t uint;
 
@@ -62,7 +63,7 @@ int main(int argc, char **argv) {
     h_rend->setActiveShaderHandle(shader);
 
 
-    PhysicsEngine* physics = new PhysicsEngine();
+
 
     std::vector<float> verts1 = {
         -0.5f,  -0.5f, 0.0f,
@@ -82,8 +83,10 @@ int main(int argc, char **argv) {
     //     3.0f, 2.0f, 0.0f
     // };
 
-
-    PhysicsBody* body1 = new PhysicsBody(glm::vec3(0.5f, 0.5f, 0.0f), glm::vec3(0.5f));
+    PhysicsEngine* physics = new PhysicsEngine();
+    // PhysicsBody* body1 = new PhysicsBody(glm::vec3(0.5f, 0.5f, 0.0f), glm::vec3(0.5f));
+    std::shared_ptr<PhysicsBody> body1 = std::make_shared<PhysicsBody>(glm::vec3(0.5f, 0.5f, 0.0f), glm::vec3(0.5f));
+    physics->addPhysicsBody(body1);
     // PhysicsBody* body2 = new PhysicsBody(glm::vec3(3.0f), glm::vec3(1.0f));
     h_rend->pushBackRenderQueue(physicsobject1);
     
@@ -97,6 +100,8 @@ int main(int argc, char **argv) {
         glm::mat4 view = cam->getView();
         glm::mat4 proj = cam->getProjection(WIDTH, HEIGHT);
         h_rend->drawQueue(view, proj);
+
+        body1->updatePositionRef(0.001f, physicsobject1->_position);
 
 
         glfwPollEvents();
