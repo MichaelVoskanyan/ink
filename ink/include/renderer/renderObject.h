@@ -2,6 +2,7 @@
 #define INK_RENDEROBJECT_H
 
 #include <vector>
+#include <memory>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
@@ -10,30 +11,17 @@ class Shader;
 
 class RenderObject {
 private:
-    VertexArray* vao;
-
-    glm::vec3 _rotation;
-    glm::vec3 _scale;
+  std::shared_ptr<VertexArray> _vao;
+  glm::mat4 _model;
 
 public:
-    glm::vec3 _position;
+  RenderObject();
+  void setModelMat(glm::mat4 mat);
 
-    RenderObject();
-    glm::mat4 getModelMat();
+  // static RenderObject* Create(std::vector<float> verts, std::vector<uint32_t> inds);
+  static std::shared_ptr<RenderObject> Create(std::vector<float> verts, std::vector<uint32_t> inds);
 
-    void position(glm::vec3);
-    void rotation(glm::vec3);
-    void scale(glm::vec3);
-
-    glm::vec3 position();
-    glm::vec3 rotation();
-    glm::vec3 scale();
-
-    static RenderObject* Create(std::vector<float> verts, std::vector<uint32_t> inds);
-
-    void drawRenderObject(Shader* shader, glm::mat4 mvp);
-    
+  void drawRenderObject(Shader* shader, glm::mat4 mvp);
 };
-
 
 #endif

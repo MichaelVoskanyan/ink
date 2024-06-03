@@ -1,20 +1,20 @@
 #include <core/camera.h>
 
-Camera::Camera(glm::vec3 pos, glm::vec3 front, glm::vec3 up) {
-  _position = pos;
-  _front = front;
-  _up = up;
-  _projection = glm::mat4(1.0f);
+Camera* Camera::instance = nullptr;
+
+Camera* Camera::getInstance() {
+  if(instance == nullptr) {
+    instance = new Camera();
+  }
+  return instance;
 }
 
-Camera::~Camera() {}
-
-void Camera::setPos(glm::vec3 pos) { _position = pos; }
+void Camera::setPos(glm::vec3 pos) {
+  _position = pos;
+}
 
 glm::mat4 Camera::getProjection(int width, int height) {
-  _projection =
-      glm::perspective(glm::radians(_fov), (float)width / (float)height,
-                       _nearClipPlane, _farClipPlane);
+  _projection = glm::perspective(glm::radians(_fov), (float)width / (float)height, _nearClipPlane, _farClipPlane);
   return _projection;
 }
 

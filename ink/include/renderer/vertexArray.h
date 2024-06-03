@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <memory>
 #include <stdint.h>
 
 class VertexBuffer;
@@ -12,20 +13,20 @@ typedef uint32_t uint;
 
 class VertexArray {
 private:
-    uint h_rendererID;
-    VertexBuffer* h_vertexBuffer;
-    ElementBuffer* h_elementBuffer;
+  uint h_rendererID;
+  std::shared_ptr<VertexBuffer> h_vertexBuffer;
+  std::shared_ptr<ElementBuffer> h_elementBuffer;
 
 public:
-    VertexArray();
-    ~VertexArray();
+  VertexArray();
+  ~VertexArray();
 
-    void Bind() const;
-    void Unbind() const;
+  void Bind() const;
+  void Unbind() const;
 
-    uint32_t GetCount() const;
+  uint32_t GetCount() const;
 
-    static VertexArray *Create(std::vector<float> verts, std::vector<uint> elements);
+  static std::shared_ptr<VertexArray> Create(std::vector<float> verts, std::vector<uint> elements);
 };
 
 #endif

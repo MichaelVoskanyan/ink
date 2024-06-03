@@ -1,40 +1,33 @@
 #include <renderer/renderObject.h>
 #include <renderer/vertexArray.h>
 #include <core/shader.h>
+#include <memory>
 
 RenderObject::RenderObject() {
-  _position = glm::vec3(0.f);
-  _rotation = glm::vec3(0.f);
-  _scale = glm::vec3(1.f);
+  _model = glm::mat4(1.f);
 }
 
-RenderObject *RenderObject::Create(std::vector<float> verts,
-                                   std::vector<uint32_t> inds) {
-  auto ro = new RenderObject();
-  auto va = VertexArray::Create(verts, inds);
-  ro->vao = va;
+// RenderObject* RenderObject::Create(std::vector<float> verts, std::vector<uint32_t> inds) {
+//   auto ro = new RenderObject();
+//   auto va = VertexArray::Create(verts, inds);
+//   ro->_vao = va;
+
+//   return ro;
+// }
+
+std::shared_ptr<RenderObject> RenderObject::Create(std::vector<float> verts, std::vector<uint32_t> inds) {
+  auto ro = std::make_shared<RenderObject>();
+  ro->_vao = VertexArray::Create(verts, inds);
 
   return ro;
 }
 
-glm::mat4 RenderObject::getModelMat() {
-  glm::mat4 model = glm::mat4(1.f);
-  model = glm::translate(model, _position);
-  model = glm::scale(model, _scale);
-
-  return model;
+void RenderObject::setModelMat(glm::mat4 mat) {
+  this->_model = mat;
 }
 
-void RenderObject::position(glm::vec3 position) { _position = position; }
-void RenderObject::rotation(glm::vec3 rotation) { _rotation = rotation; }
-void RenderObject::scale(glm::vec3 scale) { _scale = scale; }
-
-glm::vec3 RenderObject::position() { return _position; }
-glm::vec3 RenderObject::rotation() { return _rotation; }
-glm::vec3 RenderObject::scale() { return _scale; }
-
-void RenderObject::drawRenderObject(Shader *shader, glm::mat4 vp) {
-  vao->Bind();
-  shader->setMat4("MVP", vp * getModelMat());
-  glDrawElements(GL_TRIANGLES, vao->GetCount(), GL_UNSIGNED_INT, nullptr);
+void RenderObject::drawRenderObject(Shader* shader, glm::mat4 vp) {
+  _vao->Bind();
+  shader->setMat4("MVP", vp * _model);
+  glDrawElements(GL_TRIANGLES, _vao->GetCount(), GL_UNSIGNED_INT, nullptr);
 }

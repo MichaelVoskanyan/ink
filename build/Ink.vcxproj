@@ -313,11 +313,14 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="C:\Dev\ink\ink\src\renderer\vertexBuffer.cpp" />
-    <ClCompile Include="C:\Dev\ink\ink\src\renderer\elementBuffer.cpp" />
+    <ClCompile Include="C:\Dev\ink\ink\src\renderer\buffers.cpp" />
     <ClCompile Include="C:\Dev\ink\ink\src\renderer\vertexArray.cpp" />
     <ClCompile Include="C:\Dev\ink\ink\src\renderer\renderObject.cpp" />
-    <ClCompile Include="C:\Dev\ink\ink\src\renderer\renderer.cpp" />
+    <ClCompile Include="C:\Dev\ink\ink\src\ecs\entity.cpp" />
+    <ClInclude Include="C:\Dev\ink\ink\include\ecs\component.h" />
+    <ClCompile Include="C:\Dev\ink\ink\src\ecs\c_RenderObject.cpp" />
+    <ClCompile Include="C:\Dev\ink\ink\src\physics\physicsBase.cpp" />
+    <ClCompile Include="C:\Dev\ink\ink\src\physics\physicsEngine.cpp" />
     <ClCompile Include="C:\Dev\ink\vendor\glad\src\glad.c" />
     <ClCompile Include="C:\Dev\ink\ink\src\core\window.cpp" />
     <ClCompile Include="C:\Dev\ink\ink\src\core\shader.cpp" />

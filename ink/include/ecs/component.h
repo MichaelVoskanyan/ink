@@ -2,20 +2,24 @@
 #define INK_COMPONENT_H
 
 #include <memory>
+#include <glm/glm.hpp>
 
 /* -- Forward Declaration -- */
 class Entity;
 
 class Component {
-private:
+protected:
   std::shared_ptr<Entity> owner;
 
 public:
-  virtual void Init();
-  virtual void Start();
-  virtual void Update(float deltaTime);
-  virtual void PhysicsUpdate(float fixedDeltaTime);
-  virtual void LateUpdate(float deltaTime);
+  Component(Entity* owner) : owner(owner) {}
+  ~Component() {}
+
+  virtual void init() {}
+  virtual void start() {}
+  virtual void update(float deltaTime) {}
+  virtual void physicsUpdate(float fixedDeltaTime) {}
+  virtual void lateUpdate(float deltaTime) {}
 };
 
 #endif

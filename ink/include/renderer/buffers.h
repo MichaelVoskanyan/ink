@@ -24,7 +24,7 @@ public:
 
   uint32_t GetCount() const;
 
-  static ElementBuffer *Create(std::vector<uint32_t> elements);
+  static std::shared_ptr<ElementBuffer> Create(std::vector<uint32_t> elements);
 };
 
 /**
@@ -45,7 +45,7 @@ public:
   void Bind() const;
   void Unbind() const;
 
-  static VertexBuffer *Create(std::vector<float> vertices);
+  static std::shared_ptr<VertexBuffer> Create(std::vector<float> vertices);
 };
 
 #endif

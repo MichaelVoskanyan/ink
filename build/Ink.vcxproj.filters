@@ -1,10 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="C:\Dev\ink\ink\src\renderer\vertexBuffer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="C:\Dev\ink\ink\src\renderer\elementBuffer.cpp">
+    <ClCompile Include="C:\Dev\ink\ink\src\renderer\buffers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C:\Dev\ink\ink\src\renderer\vertexArray.cpp">
@@ -13,7 +10,16 @@
     <ClCompile Include="C:\Dev\ink\ink\src\renderer\renderObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Dev\ink\ink\src\renderer\renderer.cpp">
+    <ClCompile Include="C:\Dev\ink\ink\src\ecs\entity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Dev\ink\ink\src\ecs\c_RenderObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Dev\ink\ink\src\physics\physicsBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Dev\ink\ink\src\physics\physicsEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C:\Dev\ink\vendor\glad\src\glad.c">
@@ -33,9 +39,17 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="C:\Dev\ink\ink\include\ecs\component.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
     <CustomBuild Include="C:\Dev\ink\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{95D579B9-1E52-3EDF-AA10-D1EF9D526993}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files">
       <UniqueIdentifier>{130E56C6-CA95-367D-A86B-65F202DE4DA9}</UniqueIdentifier>
     </Filter>
