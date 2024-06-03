@@ -9,11 +9,15 @@
 #include <core/shader.h>
 #include <core/window.h>
 
+#include <physics/physicsBase.h>
+#include <physics/physicsEngine.h>
+
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
 #include <iostream>
 #include <vector>
+#include <memory>
 
 typedef uint32_t uint;
 
@@ -39,20 +43,25 @@ int main(int argc, char **argv) {
 
   wnd->InitWindow();
 
-  Renderer *h_rend = Renderer::getInstance();
+  // std::vector<float> verts = {
+  //     -0.5f, 0.0f, 0.0f,
+  //      0.5f, 0.0f, 0.0f,
+  //      0.0f, 1.0f, 0.0f
+  // };
 
-  std::vector<float> verts = {-0.5f, 0.0f, 0.0f, 0.5f, 0.0f,
-                              0.0f,  0.0f, 1.0f, 0.0f};
+  // std::vector<uint> inds = { 0, 1, 2 };
 
-  std::vector<uint> inds = {0, 1, 2};
+  // auto ro = RenderObject::Create(verts, inds);
 
-  auto ro = RenderObject::Create(verts, inds);
+  // std::vector<float> nVerts = {
+  //     -0.5f,  0.0f, 0.0f,
+  //      0.5f,  0.0f, 0.0f,
+  //      0.0f, -1.0f, 0.0f
+  // };
 
-  glEnableVertexAttribArray(0);
-  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
-  // glfwSetKeyCallback(wnd->h_window, keyCallback);
+  //   std::vector<uint32_t> nInds = {1, 0, 2};
 
-  auto shader = new Shader("/shaders/tri.vs", "/shaders/tri.fs");
+  // auto ro2 = RenderObject::Create(nVerts, nInds);
 
   shader->use();
 
@@ -63,6 +72,29 @@ int main(int argc, char **argv) {
 
   h_rend->pushBackRenderQueue(ro);
   // h_rend->pushBackRenderQueue(ro2);
+
+  std::vector<float> verts1 = {-0.5f, -0.5f, 0.0f, -0.5f, 0.5f,  0.0f,
+                               0.5f,  0.5f,  0.0f, 0.5f,  -0.5f, 0.0f};
+
+  std::vector<uint32_t> physicsinds = {0, 1, 2, 0, 2, 3};
+
+  auto physicsobject1 = RenderObject::Create(verts1, physicsinds);
+
+  // std::vector<float> verts2 = {
+  //     2.0f,  2.0f, 0.0f,
+  //     2.0f,  3.0f, 0.0f,
+  //     3.0f, 3.0f, 0.0f,
+  //     3.0f, 2.0f, 0.0f
+  // };
+
+  PhysicsEngine *physics = new PhysicsEngine();
+  // PhysicsBody* body1 = new PhysicsBody(glm::vec3(0.5f, 0.5f, 0.0f),
+  // glm::vec3(0.5f));
+  std::shared_ptr<PhysicsBody> body1 = std::make_shared<PhysicsBody>(
+      glm::vec3(0.5f, 0.5f, 0.0f), glm::vec3(0.5f));
+  physics->addPhysicsBody(body1);
+  // PhysicsBody* body2 = new PhysicsBody(glm::vec3(3.0f), glm::vec3(1.0f));
+  h_rend->pushBackRenderQueue(physicsobject1);
 
   // -------------
   // MAIN LOOP
@@ -81,8 +113,7 @@ int main(int argc, char **argv) {
     if (glfwGetKey(wnd->h_window, GLFW_KEY_D) == GLFW_PRESS)
       translationVector.x += translationSpeed;
 
-    // Apply translation to the model matrix
-    model = glm::translate(model, translationVector);
+    body1->updatePositionRef(0.001f, physicsobject1->_position);
 
     glm::mat4 view = cam->getView();
     glm::mat4 proj = cam->getProjection(800, 600);

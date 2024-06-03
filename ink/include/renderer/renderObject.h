@@ -12,11 +12,11 @@ class RenderObject {
 private:
     VertexArray* vao;
 
-    glm::vec3 _position;
     glm::vec3 _rotation;
     glm::vec3 _scale;
 
 public:
+    glm::vec3 _position;
 
     RenderObject();
     glm::mat4 getModelMat();
