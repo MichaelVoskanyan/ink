@@ -7,7 +7,7 @@
                 "${workspaceFolder}/ink/include",
                 "${workspaceFolder}/vendor/glad/include",
                 "${workspaceFolder}/vendor/glfw/include",
-                "${workspaceFolder}/vendor/glm_master"
+                "${workspaceFolder}/vendor/GLM"
             ],
             "intelliSenseMode": "windows-msvc-x64",
             "cStandard": "c17",

@@ -257,11 +257,18 @@ DOXYGEN_EXECUTABLE:FILEPATH=DOXYGEN_EXECUTABLE-NOTFOUND
 //Value Computed by CMake
 GLFW_BINARY_DIR:STATIC=C:/Dev/ink/build/vendor/glfw
 
+//Build support for Win32
+GLFW_BUILD_WIN32:BOOL=ON
+
 //Value Computed by CMake
 GLFW_IS_TOP_LEVEL:STATIC=OFF
 
+//Library type override for GLFW (SHARED, STATIC, OBJECT, or empty
+// to follow BUILD_SHARED_LIBS)
+GLFW_LIBRARY_TYPE:STRING=
+
 //Value Computed by CMake
-GLFW_SOURCE_DIR:STATIC=C:/Dev/ink/vendor/glfw
+GLFW_SOURCE_DIR:STATIC=C:/Dev/ink/vendor/GLFW
 
 //Force use of high-performance GPU on hybrid systems
 GLFW_USE_HYBRID_HPG:BOOL=OFF
@@ -462,6 +469,10 @@ GLFW_BUILD_EXAMPLES:INTERNAL=OFF
 GLFW_BUILD_TESTS:INTERNAL=OFF
 //Generate installation target
 GLFW_INSTALL:INTERNAL=OFF
+//GLFW pkg-config Libs.private
+GLFW_PKG_CONFIG_LIBS_PRIVATE:INTERNAL= -lgdi32
+//GLFW pkg-config Requires.private
+GLFW_PKG_CONFIG_REQUIRES_PRIVATE:INTERNAL=
 //CMAKE_INSTALL_PREFIX during last run
 _GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=C:/Program Files (x86)/Ink
 

@@ -21,7 +21,7 @@
 
 #include <iostream>
 #include <vector>
-#include <memory> // <------ THIS FUCKING BULLSHIT
+#include <memory>
 
 typedef uint32_t uint;
 
@@ -34,7 +34,7 @@ int main(int argc, char** argv) {
 
   // auto h_Rend = Renderer::getInstance();
 
-  auto wnd = new Window();
+  auto wnd = std::make_shared<Window>();
   wnd->i_windowHeight = HEIGHT;
   wnd->i_windowWidth = WIDTH;
   wnd->s_windowTitle = TITLE;
@@ -85,5 +85,7 @@ int main(int argc, char** argv) {
     glfwSwapBuffers(wnd->h_window);
   }
 
+  glfwDestroyWindow(wnd->h_window);
+  glfwTerminate();
   return 0;
 }

@@ -67,5 +67,6 @@
         "filesystem": "cpp",
         "fstream": "cpp"
     },
-    "C_Cpp.default.compilerPath": "cl.exe"
+    "C_Cpp.default.compilerPath": "cl.exe",
+    "cmake.configureOnOpen": false
 }

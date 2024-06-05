@@ -5,16 +5,14 @@ set(CMAKE_CXX_STANDARD 17)
 
 include_directories(
     "vendor/glad/include"
-    "vendor/glfw/include"
-    "vendor/glm_master"
+    "vendor/GLFW/include"
+    "vendor/GLM"
     "ink/include"
 )
 
-add_subdirectory(vendor/glfw)
+add_subdirectory(vendor/GLFW)
 
 link_directories("vendor/glfw/src/Debug")
-
-link_libraries(glfw)
 
 set (GLFW_BUILD_EXAMPLES OFF CACHE INTERNAL "Build the GLFW example programs")
 set (GLFW_BUILD_TESTS OFF CACHE INTERNAL "Build the GLFW test programs")
@@ -53,3 +51,5 @@ add_executable(Ink
     ${SOURCE_PHYSICS}
     ${SOURCE}
 )
+
+target_link_libraries(Ink glfw)

@@ -9,11 +9,10 @@ class Entity;
 
 class Component {
 protected:
-  std::shared_ptr<Entity> owner;
+  Entity* owner;
 
 public:
   Component(Entity* owner) : owner(owner) {}
-  ~Component() {}
 
   virtual void init() {}
   virtual void start() {}

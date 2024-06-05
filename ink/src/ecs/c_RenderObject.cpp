@@ -32,6 +32,7 @@ void C_RenderObject::lateUpdate(float deltaTime) {
 
 void C_RenderObject::updateTransformMatrix() {
   glm::mat4 transform = glm::mat4(1.f);
+
   transform = glm::translate(transform, owner->position);
 
   transform = glm::rotate(transform, glm::radians(owner->rotation.x), glm::vec3(1.f, 0.f, 0.f));
