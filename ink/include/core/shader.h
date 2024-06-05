@@ -30,12 +30,12 @@ public:
   void use();
 
   // Setting shader uniforms
-  void setBool(const std::string& name, bool value) const;
-  void setInt(const std::string& name, int value) const;
-  void setFloat(const std::string& name, float value) const;
-  void setVec3(const std::string& name, glm::vec3 value) const;
-  void setVec3(const std::string& name, float x, float y, float z) const;
-  void setMat4(const std::string& name, glm::mat4 value) const;
+  void SetBool(const std::string& name, bool value) const;
+  void SetInt(const std::string& name, int value) const;
+  void SetFloat(const std::string& name, float value) const;
+  void SetVec3(const std::string& name, glm::vec3 value) const;
+  void SetVec3(const std::string& name, float x, float y, float z) const;
+  void SetMat4(const std::string& name, glm::mat4 value) const;
 };
 
 #endif // CESIUM_SHADER_H

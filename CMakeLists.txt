@@ -21,20 +21,21 @@ set (GLFW_INSTALL OFF CACHE INTERNAL "Generate installation target")
 
 set(SOURCE_RENDERER
     "ink/src/renderer/buffers.cpp"
-    "ink/src/renderer/vertexArray.cpp"
-    "ink/src/renderer/renderObject.cpp"
+    "ink/src/renderer/vertex_array.cpp"
+    "ink/src/renderer/render_object.cpp"
     # "ink/src/renderer/renderer.cpp"
 )
 
 set(SOURCE_PHYSICS
-    "ink/src/physics/physicsBase.cpp"
-    "ink/src/physics/physicsEngine.cpp"
+    "ink/src/physics/physics_base.cpp"
+    "ink/src/physics/physics_engine.cpp"
 )
 
 set(SOURCE_ECS
     "ink/src/ecs/entity.cpp"
     "ink/include/ecs/component.h"
-    "ink/src/ecs/c_RenderObject.cpp"
+    "ink/src/ecs/c_render_object.cpp"
+    "ink/src/ecs/c_character_controller.cpp"
 )
 
 set(SOURCE

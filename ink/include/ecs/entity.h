@@ -39,11 +39,11 @@ private:
   std::vector<std::shared_ptr<Component>> components;
 
 public:
-  void init();
-  void start();
-  void update(float deltaTime);
-  void physicsUpdate(float fixedDeltaTime);
-  void lateUpdate(float deltaTime);
+  void Init();
+  void Start();
+  void Update(float deltaTime);
+  void PhysicsUpdate(float fixedDeltaTime);
+  void LateUpdate(float deltaTime);
 
   /* -- Raw Tranform Member Vars -- */
 public:

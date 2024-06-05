@@ -5,38 +5,39 @@
 
 #include <iostream>
 
-void framebuffer_size_callback(GLFWwindow *wind, int width, int height) {
+void framebuffer_size_callback(GLFWwindow* wind, int width, int height) {
   glViewport(0, 0, width, height);
 }
 
-void Window::InitWindow() {
-  if (!glfwInit()) {
+Window::Window(const WindowProps& props) {
+  if(!glfwInit()) {
     std::cerr << "Failed to initialize GLFW\n";
-    exit(EXIT_FAILURE);
+    exit(1);
   }
 
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
   glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
   glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-  h_window = glfwCreateWindow(i_windowWidth, i_windowHeight, s_windowTitle,
-                              NULL, NULL);
+  m_Window = glfwCreateWindow((int)props.width, (int)props.height, props.title, nullptr, nullptr);
 
-  if (!h_window) {
+  if(!m_Window) {
     std::cerr << "Failed to create GLFW window\n";
     glfwTerminate();
-    exit(EXIT_FAILURE);
+    exit(1);
   }
 
-  glfwMakeContextCurrent(h_window);
+  glfwMakeContextCurrent(m_Window);
 
-  if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+  if(!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
     std::cerr << "Failed to initialize GLAD\n";
-    exit(EXIT_FAILURE);
+    exit(1);
   }
 
-  glfwSetFramebufferSizeCallback(h_window, framebuffer_size_callback);
+  glClearColor(0.2f, 0.2f, 0.3f, 1.f);
+}
 
-  glViewport(0, 0, i_windowWidth, i_windowHeight);
-  glClearColor(.5f, .25f, 0.f, 1.f);
+Window* Window::Create(const WindowProps& props) {
+  Window* win = new Window(props);
+  return win;
 }

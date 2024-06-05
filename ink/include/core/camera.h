@@ -32,26 +32,26 @@ public:
   glm::vec3 _up = glm::vec3(0.f, 1.f, 0.f);
   float _yaw = -90.0f, _pitch = 0, _roll = 0;
 
-  static Camera* getInstance();
+  static Camera* GetInstance();
 
   Camera(const Camera& obj) = delete;
 
   // Pretty self explanitory
-  void setPos(glm::vec3 pos);
+  void SetPos(glm::vec3 pos);
 
   /**
    * Returns matrix 4x4 of the projection. Takes in
    * int width = width of glViewport (draw space)
    * int height = height of glViewport ^
    */
-  glm::mat4 getProjection(int width, int height);
+  glm::mat4 GetProjection(int width, int height);
 
   /**
    * Returns matrix 4x4 of the camera view. This function
    * relies on member variables fov, near and far clip planes,
    * and the directions front and up.
    */
-  glm::mat4 getView();
+  glm::mat4 GetView();
 };
 
 #endif // CESIUM_CAMERA_H

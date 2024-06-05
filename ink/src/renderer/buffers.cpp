@@ -4,6 +4,7 @@
 
 ElementBuffer::ElementBuffer() {
   glGenBuffers(1, &h_rendererID);
+  count = 0;
 }
 
 ElementBuffer::~ElementBuffer() {
@@ -32,6 +33,7 @@ std::shared_ptr<ElementBuffer> ElementBuffer::Create(std::vector<uint32_t> eleme
 
 VertexBuffer::VertexBuffer() {
   glGenBuffers(1, &h_rendererID);
+  size = 0;
 }
 
 VertexBuffer::~VertexBuffer() {
