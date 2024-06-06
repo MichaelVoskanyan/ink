@@ -46,6 +46,8 @@ public:
   void SetVSync(bool enabled);
   bool IsVSync() const;
 
+  GLFWwindow* GetGlfwWindow();
+
   static Window* Create(const WindowProps& props = WindowProps());
 
 private:

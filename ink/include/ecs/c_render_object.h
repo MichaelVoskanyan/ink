@@ -27,11 +27,11 @@ public:
   std::vector<float> vertices;
   std::vector<uint32_t> indices;
 
-  void SetShader(Shader* shader);
+  void SetShader(std::shared_ptr<Shader> shader);
 
 private:
   std::shared_ptr<RenderObject> renderObject;
-  Shader* shader;
+  std::shared_ptr<Shader> shader;
 
   void UpdateTransformMatrix();
 };

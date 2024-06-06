@@ -43,7 +43,7 @@ set(SOURCE
     "ink/src/core/window.cpp"
     "ink/src/core/shader.cpp"
     "ink/src/core/camera.cpp"
-    "ink/src/core/main.cpp"
+    "ink/src/main.cpp"
 )
 
 add_executable(Ink 

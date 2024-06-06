@@ -37,6 +37,13 @@ Window::Window(const WindowProps& props) {
   glClearColor(0.2f, 0.2f, 0.3f, 1.f);
 }
 
+GLFWwindow* Window::GetGlfwWindow() {
+  if(!m_Window) {
+    return nullptr;
+  }
+  return m_Window;
+}
+
 Window* Window::Create(const WindowProps& props) {
   Window* win = new Window(props);
   return win;

@@ -27,7 +27,7 @@ void CRenderObject::LateUpdate(float deltaTime) {
   auto h_cam = Camera::GetInstance();
   vp *= h_cam->GetProjection(800, 600);
   vp *= h_cam->GetView();
-  renderObject->DrawRenderObject(shader, vp);
+  renderObject->DrawRenderObject(shader.get(), vp);
 }
 
 void CRenderObject::UpdateTransformMatrix() {
@@ -43,6 +43,6 @@ void CRenderObject::UpdateTransformMatrix() {
   renderObject->SetModelMat(transform);
 }
 
-void CRenderObject::SetShader(Shader* shader) {
+void CRenderObject::SetShader(std::shared_ptr<Shader> shader) {
   this->shader = shader;
 }
