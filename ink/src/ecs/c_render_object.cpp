@@ -10,8 +10,6 @@
 
 void CRenderObject::Init() {
   renderObject = RenderObject::Create(vertices, indices);
-  // auto h_Renderer = Renderer::getInstance();
-  // h_Renderer->pushBackRenderQueue(renderObject);
 }
 
 void CRenderObject::Start() {}
