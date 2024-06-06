@@ -12,6 +12,19 @@
             "intelliSenseMode": "windows-msvc-x64",
             "cStandard": "c17",
             "cppStandard": "c++17"
+        },
+        {
+            "name": "MacOS",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/ink/include",
+                "${workspaceFolder}/vendor/glad/include",
+                "${workspaceFolder}/vendor/glfw/include",
+                "${workspaceFolder}/vendor/GLM"
+            ],
+            "intelliSenseMode": "macos-clang-arm64",
+            "cStandard": "c17",
+            "cppStandard": "c++17"
         }
     ],
     "version": 4

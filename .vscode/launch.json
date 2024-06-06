@@ -29,9 +29,9 @@
         "name":"Debug (MacOS)",
         "type":"lldb",
         "request":"launch",
-        "program":"${workspaceFoler}/build/Ink",
+        "program":"${workspaceFolder}/build/Ink",
         "preLaunchTask": "build",
-        "externalConsole":false,
+        "console":"internalConsole"
       }
     ]
   }
