@@ -4,7 +4,7 @@
 
 #ifndef CESIUM_SHADER_H
 #define CESIUM_SHADER_H
-// clang-format off
+
 #include <glad/glad.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -16,21 +16,26 @@
 #include <filesystem>
 
 namespace fs = std::filesystem;
-// clang-format on
+
 class Shader {
 public:
+  // ID or shader handle
   unsigned int ID;
 
-  Shader(const char *vertexPath, const char *fragmentPath);
+  // Constructor, must have path to vertex and fragment shaders.
+  // Local path is accepted, must be prepended with '/'
+  Shader(const char* vertexPath, const char* fragmentPath);
 
+  // Binds shader for use
   void use();
 
-  void setBool(const std::string &name, bool value) const;
-  void setInt(const std::string &name, int value) const;
-  void setFloat(const std::string &name, float value) const;
-  void setVec3(const std::string &name, glm::vec3 value) const;
-  void setVec3(const std::string &name, float x, float y, float z) const;
-  void setMat4(const std::string &name, glm::mat4 value) const;
+  // Setting shader uniforms
+  void SetBool(const std::string& name, bool value) const;
+  void SetInt(const std::string& name, int value) const;
+  void SetFloat(const std::string& name, float value) const;
+  void SetVec3(const std::string& name, glm::vec3 value) const;
+  void SetVec3(const std::string& name, float x, float y, float z) const;
+  void SetMat4(const std::string& name, glm::mat4 value) const;
 };
 
 #endif // CESIUM_SHADER_H

@@ -1,37 +1,37 @@
 {
-    "version": "2.0.0",
-    "tasks": [
-      {
-        "label": "cmake",
-        "type": "shell",
-        "command": "cmake",
-        "args": [
-          "-B",
-          "build"
-        ],
-        "group": {
-          "kind": "build",
-          "isDefault": false
-        },
-        "problemMatcher": []
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "cmake",
+      "type": "shell",
+      "command": "cmake",
+      "args": [
+        "-B",
+        "build"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": false
       },
-      {
-        "label": "build",
-        "type": "shell",
-        "command": "cmake --build build",
-        "dependsOn": "cmake",
-        "group": {
-          "kind": "build",
-          "isDefault": true
-        },
-        "problemMatcher": []
+      "problemMatcher": []
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "cmake --build build",
+      "dependsOn": "cmake",
+      "group": {
+        "kind": "build",
+        "isDefault": true
       },
-      {
-        "type": "cmake",
-        "label": "CMake: test",
-        "command": "test",
-        "problemMatcher": [],
-        "detail": "CMake template test task"
-      }
-    ]
-  }
+      "problemMatcher": []
+    },
+    {
+      "type": "cmake",
+      "label": "CMake: test",
+      "command": "test",
+      "problemMatcher": [],
+      "detail": "CMake template test task"
+    }
+  ]
+}
