@@ -8,6 +8,7 @@
 #include <ecs/component.h>
 #include <ecs/c_render_object.h>
 #include <ecs/c_character_controller.h>
+#include <ecs/c_physics_body.h>
 
 #include <core/camera.h>
 #include <core/shader.h>
@@ -47,8 +48,8 @@ int main(int argc, char** argv) {
   auto player = std::make_shared<Entity>();
   auto ro = player->AddComponent<CRenderObject>();
   auto cc = player->AddComponent<CCharacterController>();
-  ro->vertices = verts1;
-  ro->indices = physicsinds;
+  auto pb = player->AddComponent<CPhysicsBody>();
+  ro->SetShape(ShapeType::Circle, 0.5f);
   ro->SetShader(shader.get());
 
   player->position = glm::vec3(0.f, 0.f, 0.f);
