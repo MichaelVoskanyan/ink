@@ -1,6 +1,6 @@
 #pragma once
 
-#include "component.h"
+#include "ecs/component.h"
 
 class CPhysicsBody : public Component {
 public:
@@ -9,7 +9,6 @@ public:
   void Init() override;
   void Start() override;
   void Update(float deltaTime) override;
-  void PhysicsUpdate(float fixedDeltaTime) override;
   void LateUpdate() override;
   // PhysicsBody(glm::vec3 position, glm::vec3 size);
 

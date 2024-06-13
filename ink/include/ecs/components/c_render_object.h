@@ -1,7 +1,9 @@
 #pragma once
 
-#include "component.h"
+#include "ecs/component.h"
+
 #include <glm/glm.hpp>
+
 #include <memory>
 #include <cstdint>
 #include <vector>
@@ -24,7 +26,6 @@ public:
   void Init();
   void Start();
   void Update(float deltaTime);
-  void PhysicsUpdate(float fixedDeltaTime);
   void LateUpdate();
 
   void SetShape(ShapeType shapeType, float size);

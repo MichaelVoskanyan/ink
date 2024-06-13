@@ -42,7 +42,6 @@ public:
   void Init();
   void Start();
   void Update(float deltaTime);
-  void PhysicsUpdate(float fixedDeltaTime);
   void LateUpdate();
 
   /* -- Raw Tranform Member Vars -- */

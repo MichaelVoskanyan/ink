@@ -9,7 +9,6 @@ public:
   void Init() override;
   void Start() override;
   void Update(float deltaTime) override;
-  void PhysicsUpdate(float fixedDeltaTime) override;
   void LateUpdate() override;
 
   glm::vec3 GetPos() const;

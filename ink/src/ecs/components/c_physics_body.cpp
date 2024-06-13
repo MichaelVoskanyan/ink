@@ -1,4 +1,4 @@
-#include <ecs/c_physics_body.h>
+#include <ecs/components/c_physics_body.h>
 #include <ecs/entity.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
@@ -10,10 +10,8 @@ void CPhysicsBody::Init() {
 
 void CPhysicsBody::Start() {}
 
-void CPhysicsBody::Update(float deltaTime) {}
-
-void CPhysicsBody::PhysicsUpdate(float fixedDeltaTime) {
-  UpdatePositionRef(fixedDeltaTime, owner->position);
+void CPhysicsBody::Update(float deltaTime) {
+  UpdatePositionRef(deltaTime, owner->position);
 }
 
 void CPhysicsBody::LateUpdate() {}

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "component.h"
+#include "ecs/component.h"
 
 class CCharacterController : public Component {
 public:
@@ -9,7 +9,6 @@ public:
   void Init();
   void Start();
   void Update(float deltaTime);
-  void PhysicsUpdate(float fixedDeltaTime);
   void LateUpdate();
 
 private:

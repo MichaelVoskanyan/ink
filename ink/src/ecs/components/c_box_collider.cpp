@@ -1,4 +1,4 @@
-#include "ecs/c_box_collider.h"
+#include "ecs/components/c_box_collider.h"
 
 #include "ecs/entity.h"
 
@@ -7,7 +7,6 @@
 void CBoxCollider::Init() {}
 void CBoxCollider::Start() {}
 void CBoxCollider::Update(float deltaTime) {}
-void CBoxCollider::PhysicsUpdate(float fixedDeltaTime) {}
 void CBoxCollider::LateUpdate() {}
 
 glm::vec3 CBoxCollider::GetPos() const {

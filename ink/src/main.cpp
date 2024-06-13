@@ -1,27 +1,4 @@
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-
-#include <renderer/render_object.h>
-#include <renderer/vertex_array.h>
-
-#include <ecs/entity.h>
-#include <ecs/component.h>
-#include <ecs/c_render_object.h>
-#include <ecs/c_character_controller.h>
-#include <ecs/c_physics_body.h>
-#include <ecs/c_box_collider.h>
-
-#include <core/camera.h>
-#include <core/shader.h>
-#include <core/window.h>
-
-#include <physics/physics_base.h>
-#include <physics/physics_engine.h>
-
-#include <core/application.h>
-
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
+#include "ink.h"
 
 #include <iostream>
 #include <vector>
@@ -107,13 +84,9 @@ public:
       }
 
       for(auto& e : entities) {
-        e->PhysicsUpdate(deltaTime);
-      }
-
-      for(auto& e : entities) {
         e->LateUpdate();
       }
-      throw std::invalid_argument("Test Exception");
+
       if(CBoxCollider::CheckCollision(*playerCol, *blockCol)) {
         std::shared_ptr<CPhysicsBody> playerPhys = player->GetComponent<CPhysicsBody>();
         glm::vec3 currVel = playerPhys->Velocity();

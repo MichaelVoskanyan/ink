@@ -1,4 +1,4 @@
-#include <ecs/c_character_controller.h>
+#include <ecs/components/c_character_controller.h>
 #include <ecs/entity.h>
 #include <GLFW/glfw3.h>
 
@@ -9,8 +9,6 @@ void CCharacterController::Start() {}
 void CCharacterController::Update(float deltaTime) {
   ProcessKeyboard(deltaTime);
 }
-
-void CCharacterController::PhysicsUpdate(float fixedDeltaTime) {}
 
 void CCharacterController::LateUpdate() {}
 

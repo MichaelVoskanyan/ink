@@ -1,4 +1,4 @@
-#include <ecs/c_render_object.h>
+#include <ecs/components/c_render_object.h>
 #include <ecs/entity.h>
 
 #include <renderer/render_object.h>
@@ -17,8 +17,6 @@ void CRenderObject::Start() {}
 void CRenderObject::Update(float deltaTime) {
   UpdateTransformMatrix();
 }
-
-void CRenderObject::PhysicsUpdate(float fixedDeltaTime) {}
 
 void CRenderObject::LateUpdate() {
   glm::mat4 vp = glm::mat4(1.f);
