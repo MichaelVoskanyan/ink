@@ -1,4 +1,4 @@
-# Install script for directory: /home/michael/Dev/Ink
+# Install script for directory: /home/harlan/Desktop/Projects/c++/ink
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -44,7 +44,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/michael/Dev/Ink/build/vendor/glfw/cmake_install.cmake")
+  include("/home/harlan/Desktop/Projects/c++/ink/build/vendor/glfw/cmake_install.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -55,5 +55,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/michael/Dev/Ink/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/harlan/Desktop/Projects/c++/ink/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

@@ -6,6 +6,8 @@
 void CPhysicsBody::Init() {
   _acceleration = glm::vec3(0.0f, -GRAVITY, 0.0f);
   _velocity = glm::vec3(0.0f);
+  prevCollision = false;
+  currCollision = false;
 }
 
 void CPhysicsBody::Start() {}
@@ -17,6 +19,11 @@ void CPhysicsBody::PhysicsUpdate(float fixedDeltaTime) {
 }
 
 void CPhysicsBody::LateUpdate() {}
+
+void CPhysicsBody::UpdateCollisions(bool collision) {
+  prevCollision = currCollision;
+  currCollision = collision;
+}
 
 void CPhysicsBody::Velocity(glm::vec3 v) {
   _velocity = v;
@@ -35,7 +42,16 @@ glm::vec3 CPhysicsBody::Acceleration() const {
 }
 
 void CPhysicsBody::UpdatePositionRef(float deltaTime, glm::vec3& position) {
-  _velocity += _acceleration * deltaTime;
+  if(prevCollision && currCollision) {
+    _velocity.x = 0; _velocity.y = 0;
+  }
+  else if (currCollision)
+  {
+    _velocity.y = -_velocity.y;
+  }
+  else {
+    _velocity += _acceleration * deltaTime;
+  }
   position += _velocity * deltaTime;
   // std::cout << "Accel: " << _acceleration.x << ", " << _acceleration.y << std::endl;
   // std::cout << "Velocity: " << _velocity.x << ", " << _velocity.y << std::endl;

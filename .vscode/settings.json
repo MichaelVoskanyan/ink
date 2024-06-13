@@ -65,7 +65,16 @@
         "xtr1common": "cpp",
         "xutility": "cpp",
         "filesystem": "cpp",
-        "fstream": "cpp"
+        "fstream": "cpp",
+        "*.tcc": "cpp",
+        "codecvt": "cpp",
+        "cwctype": "cpp",
+        "deque": "cpp",
+        "memory_resource": "cpp",
+        "numeric": "cpp",
+        "string_view": "cpp",
+        "numbers": "cpp",
+        "cinttypes": "cpp"
     },
     "C_Cpp.default.compilerPath": "cl.exe",
     "cmake.configureOnOpen": false

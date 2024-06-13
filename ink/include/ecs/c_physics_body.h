@@ -21,8 +21,12 @@ public:
 
   void UpdatePositionRef(float deltaTime, glm::vec3& position);
 
+  void UpdateCollisions(bool collision);
+
 private:
   glm::vec3 _acceleration;
   glm::vec3 _velocity;
-  const float GRAVITY = 1.5f; // acceleration due to gravity
+  bool prevCollision;
+  bool currCollision;
+  const float GRAVITY = 0.5f; // acceleration due to gravity
 };

@@ -57,11 +57,13 @@ public:
     player = std::make_shared<Entity>();
     std::shared_ptr<CRenderObject> ro = player->AddComponent<CRenderObject>();
     std::shared_ptr<CCharacterController> cc = player->AddComponent<CCharacterController>();
-    std::shared_ptr<CPhysicsBody> phyicsBody = player->AddComponent<CPhysicsBody>();
+    std::shared_ptr<CPhysicsBody> physicsBody = player->AddComponent<CPhysicsBody>();
     playerCol = player->AddComponent<CBoxCollider>();
 
     std::shared_ptr<Entity> block = std::make_shared<Entity>();
     std::shared_ptr<CRenderObject> blockRend = block->AddComponent<CRenderObject>();
+    std::shared_ptr<CPhysicsBody> blockPhysicsBody = block->AddComponent<CPhysicsBody>();
+    blockPhysicsBody->Velocity(glm::vec3(0.f, 5.0f, 0.f));
     blockCol = block->AddComponent<CBoxCollider>();
 
     ro->vertices = verts1;
@@ -72,7 +74,7 @@ public:
     blockRend->indices = physicsinds;
     blockRend->SetShader(shader);
 
-    player->position = glm::vec3(0.f, 0.f, 0.f);
+    player->position = glm::vec3(0.f, 0.25f, 0.f);
     player->rotation = glm::vec3(0.f);
     player->scale = glm::vec3(1.f);
 
@@ -101,6 +103,26 @@ public:
       float currentFrame = (float)glfwGetTime();
       deltaTime = currentFrame - lastFrame;
       lastFrame = currentFrame;
+      std::cout << entities.size() << std::endl;
+      for(uint32_t i = 0; i < entities.size() - 1; i++) {
+        std::shared_ptr<CBoxCollider> bodyCollider1 = entities[i]->GetComponent<CBoxCollider>();
+        std::shared_ptr<CPhysicsBody> bodyPhys1 = entities[i]->GetComponent<CPhysicsBody>();
+        
+        for(uint32_t j = i + 1; j < entities.size(); j++) {
+          std::shared_ptr<CBoxCollider> bodyCollider2 = entities[j]->GetComponent<CBoxCollider>();
+          std::shared_ptr<CPhysicsBody> bodyPhys2 = entities[j]->GetComponent<CPhysicsBody>();
+          //std::cout << "Velocity x: " << bodyPhys2->Velocity().x << " Velocity y: " << bodyPhys2->Velocity().y << " Velocity z: " << bodyPhys2->Velocity().z << std::endl;
+          if(CBoxCollider::CheckCollision(*bodyCollider1, *bodyCollider2)) {
+            bodyPhys1->UpdateCollisions(true);
+            bodyPhys2->UpdateCollisions(true);
+            std::cout << "Collision\n";
+          }
+          else {
+            bodyPhys1->UpdateCollisions(false);
+            bodyPhys2->UpdateCollisions(false);
+          }
+        }
+      }
 
       for(auto& e : entities) {
         e->Update(deltaTime);
@@ -112,14 +134,6 @@ public:
 
       for(auto& e : entities) {
         e->LateUpdate();
-      }
-      throw std::invalid_argument("Test Exception");
-      if(CBoxCollider::CheckCollision(*playerCol, *blockCol)) {
-        std::shared_ptr<CPhysicsBody> playerPhys = player->GetComponent<CPhysicsBody>();
-        glm::vec3 currVel = playerPhys->Velocity();
-        currVel.y = 0.f;
-        playerPhys->Velocity(currVel);
-        std::cout << "Collision\n";
       }
 
       glfwPollEvents();
