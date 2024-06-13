@@ -24,8 +24,8 @@ void Entity::PhysicsUpdate(float fixedDeltaTime) {
   }
 }
 
-void Entity::LateUpdate(float deltaTime) {
+void Entity::LateUpdate() {
   for(int i = components.size() - 1; i >= 0; i--) {
-    components[i]->LateUpdate(deltaTime);
+    components[i]->LateUpdate();
   }
 }

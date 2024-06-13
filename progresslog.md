@@ -1,5 +1,19 @@
 # Progress Log
 
+## 6/12/2024
+
+### TODO
+- [ ] Implement collision detection
+- [ ] Implement Physics bodies: static/rigid body
+
+## 6/01/2024
+
+### Progress
+
+- Entity-Component system
+- Refactored physics body into component
+- Implemented Render Object as component
+
 ## 5/24/2024
 - Implemented basic WASD movement
 

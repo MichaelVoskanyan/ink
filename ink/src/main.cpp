@@ -8,6 +8,8 @@
 #include <ecs/component.h>
 #include <ecs/c_render_object.h>
 #include <ecs/c_character_controller.h>
+#include <ecs/c_physics_body.h>
+#include <ecs/c_box_collider.h>
 
 #include <core/camera.h>
 #include <core/shader.h>
@@ -25,9 +27,6 @@
 #include <vector>
 #include <memory>
 
-uint16_t WIDTH = 800, HEIGHT = 600;
-char* TITLE = "Ink";
-
 class Ink : public Application {
 public:
   Ink() {
@@ -35,6 +34,13 @@ public:
 
     Start();
   }
+
+  std::vector<std::shared_ptr<CBoxCollider>> colliders;
+
+  std::shared_ptr<Entity> player;
+
+  std::shared_ptr<CBoxCollider> playerCol;
+  std::shared_ptr<CBoxCollider> blockCol;
 
   void Start() {
     std::shared_ptr<Shader> shader = std::make_shared<Shader>("/shaders/tri.vs", "/shaders/tri.fs");
@@ -48,18 +54,39 @@ public:
 
     std::vector<uint32_t> physicsinds = {0, 1, 2, 0, 2, 3};
 
-    std::shared_ptr<Entity> player = std::make_shared<Entity>();
+    player = std::make_shared<Entity>();
     std::shared_ptr<CRenderObject> ro = player->AddComponent<CRenderObject>();
     std::shared_ptr<CCharacterController> cc = player->AddComponent<CCharacterController>();
+    std::shared_ptr<CPhysicsBody> phyicsBody = player->AddComponent<CPhysicsBody>();
+    playerCol = player->AddComponent<CBoxCollider>();
+
+    std::shared_ptr<Entity> block = std::make_shared<Entity>();
+    std::shared_ptr<CRenderObject> blockRend = block->AddComponent<CRenderObject>();
+    blockCol = block->AddComponent<CBoxCollider>();
+
     ro->vertices = verts1;
     ro->indices = physicsinds;
     ro->SetShader(shader);
+
+    blockRend->vertices = verts1;
+    blockRend->indices = physicsinds;
+    blockRend->SetShader(shader);
 
     player->position = glm::vec3(0.f, 0.f, 0.f);
     player->rotation = glm::vec3(0.f);
     player->scale = glm::vec3(1.f);
 
+    block->position = glm::vec3(0.f, -1.25f, 0.f);
+    block->rotation = glm::vec3(0.f);
+    block->scale = glm::vec3(1.f);
+
+    playerCol->m_width = 1;
+    playerCol->m_height = 1;
+    blockCol->m_width = 1;
+    blockCol->m_height = 1;
+
     entities.push_back(player);
+    entities.push_back(block);
 
     for(auto& e : entities) {
       e->Init();
@@ -68,6 +95,7 @@ public:
   }
 
   void Run() {
+
     while(!glfwWindowShouldClose(m_Window->GetGlfwWindow())) {
       glClear(GL_COLOR_BUFFER_BIT);
       float currentFrame = (float)glfwGetTime();
@@ -83,7 +111,15 @@ public:
       }
 
       for(auto& e : entities) {
-        e->LateUpdate(deltaTime);
+        e->LateUpdate();
+      }
+
+      if(CBoxCollider::CheckCollision(*playerCol, *blockCol)) {
+        std::shared_ptr<CPhysicsBody> playerPhys = player->GetComponent<CPhysicsBody>();
+        glm::vec3 currVel = playerPhys->Velocity();
+        currVel.y = 0.f;
+        playerPhys->Velocity(currVel);
+        std::cout << "Collision\n";
       }
 
       glfwPollEvents();

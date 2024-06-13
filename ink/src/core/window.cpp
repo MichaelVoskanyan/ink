@@ -34,6 +34,8 @@ Window::Window(const WindowProps& props) {
     exit(1);
   }
 
+  glfwSetFramebufferSizeCallback(m_Window, framebuffer_size_callback);
+
   glClearColor(0.2f, 0.2f, 0.3f, 1.f);
 }
 

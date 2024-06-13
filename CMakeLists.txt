@@ -36,6 +36,8 @@ set(SOURCE_ECS
     "ink/include/ecs/component.h"
     "ink/src/ecs/c_render_object.cpp"
     "ink/src/ecs/c_character_controller.cpp"
+    "ink/src/ecs/c_physics_body.cpp"
+    "ink/src/ecs/c_box_collider.cpp"
 )
 
 set(SOURCE

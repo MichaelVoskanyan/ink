@@ -30,9 +30,9 @@ void framebuffer_size_callback(GLFWwindow* wind, int width, int height);
 struct WindowProps {
   uint32_t width;
   uint32_t height;
-  char* title;
+  const char* title;
 
-  WindowProps(uint32_t width = 800, uint32_t height = 600, char* title = "Window")
+  WindowProps(uint32_t width = 800, uint32_t height = 600, const char* title = "Window")
       : width(width), height(height), title(title) {}
 };
 

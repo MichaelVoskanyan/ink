@@ -20,7 +20,7 @@ void CRenderObject::Update(float deltaTime) {
 
 void CRenderObject::PhysicsUpdate(float fixedDeltaTime) {}
 
-void CRenderObject::LateUpdate(float deltaTime) {
+void CRenderObject::LateUpdate() {
   glm::mat4 vp = glm::mat4(1.f);
   auto h_cam = Camera::GetInstance();
   vp *= h_cam->GetProjection(800, 600);
@@ -99,6 +99,6 @@ void CRenderObject::SetShape(ShapeType shapeType, float size) {
   }
 }
 
-void CRenderObject::SetShader(Shader* shader) {
-  this->shader = std::shared_ptr<Shader>(shader);
+void CRenderObject::SetShader(std::shared_ptr<Shader> shader) {
+  this->shader = shader;
 }

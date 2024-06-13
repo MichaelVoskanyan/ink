@@ -14,11 +14,11 @@ protected:
 public:
   Component(Entity* owner) : owner(owner) {}
 
-  virtual void Init() {}
-  virtual void Start() {}
-  virtual void Update(float deltaTime) {}
-  virtual void PhysicsUpdate(float fixedDeltaTime) {}
-  virtual void LateUpdate(float deltaTime) {}
+  virtual void Init() = 0;
+  virtual void Start() = 0;
+  virtual void Update(float deltaTime) = 0;
+  virtual void PhysicsUpdate(float fixedDeltaTime) = 0;
+  virtual void LateUpdate() = 0;
 };
 
 #endif

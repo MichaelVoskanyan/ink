@@ -34,7 +34,7 @@
         "stopAtEntry": false,
         "cwd": "${workspaceFolder}",
         "environment": [],
-        "preLaunchTask": ""
+        "preLaunchTask": "build"
       },
       {
         "name":"Debug (MacOS)",

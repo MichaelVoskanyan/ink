@@ -12,7 +12,7 @@ void CCharacterController::Update(float deltaTime) {
 
 void CCharacterController::PhysicsUpdate(float fixedDeltaTime) {}
 
-void CCharacterController::LateUpdate(float deltaTime) {}
+void CCharacterController::LateUpdate() {}
 
 void CCharacterController::ProcessKeyboard(float deltaTime) {
   if(glfwGetKey(glfwGetCurrentContext(), GLFW_KEY_W) == GLFW_PRESS) {

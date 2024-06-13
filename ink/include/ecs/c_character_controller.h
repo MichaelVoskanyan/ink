@@ -10,7 +10,7 @@ public:
   void Start();
   void Update(float deltaTime);
   void PhysicsUpdate(float fixedDeltaTime);
-  void LateUpdate(float deltaTime);
+  void LateUpdate();
 
 private:
   void ProcessKeyboard(float deltaTime);
