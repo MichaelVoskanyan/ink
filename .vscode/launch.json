@@ -26,6 +26,17 @@
         "preLaunchTask": "build",
       },
       {
+        "name": "Debug (Linux)",
+        "type":"cppdbg",
+        "request":"launch",
+        "program":"${workspaceFolder}/build/Ink",
+        "args": [],
+        "stopAtEntry": false,
+        "cwd": "${workspaceFolder}",
+        "environment": [],
+        "preLaunchTask": ""
+      },
+      {
         "name":"Debug (MacOS)",
         "type":"lldb",
         "request":"launch",

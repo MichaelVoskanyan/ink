@@ -2,6 +2,7 @@
 #define INK_BUFFERS_H
 
 #include <vector>
+#include <memory>
 #include <cstdint>
 #include <iostream>
 

@@ -14,7 +14,21 @@
             "cppStandard": "c++17"
         },
         {
-            "name": "MacOS",
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/ink/include",
+                "${workspaceFolder}/vendor/glad/include",
+                "${workspaceFolder}/vendor/glfw/include",
+                "${workspaceFolder}/vendor/GLM"
+            ],
+            "intelliSenseMode": "linux-gcc-x64",
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c17",
+            "cppStandard": "c++17"
+        },
+        {
+            "name": "Mac",
             "includePath": [
                 "${workspaceFolder}/**",
                 "${workspaceFolder}/ink/include",

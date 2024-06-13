@@ -1,6 +1,9 @@
-C:/Dev/ink/build/CMakeFiles/Ink.dir
-C:/Dev/ink/build/CMakeFiles/ALL_BUILD.dir
-C:/Dev/ink/build/CMakeFiles/ZERO_CHECK.dir
-C:/Dev/ink/build/vendor/GLFW/CMakeFiles/ALL_BUILD.dir
-C:/Dev/ink/build/vendor/GLFW/src/CMakeFiles/glfw.dir
-C:/Dev/ink/build/vendor/GLFW/src/CMakeFiles/update_mappings.dir
+/home/michael/Dev/Ink/build/CMakeFiles/Ink.dir
+/home/michael/Dev/Ink/build/CMakeFiles/edit_cache.dir
+/home/michael/Dev/Ink/build/CMakeFiles/rebuild_cache.dir
+/home/michael/Dev/Ink/build/vendor/glfw/CMakeFiles/edit_cache.dir
+/home/michael/Dev/Ink/build/vendor/glfw/CMakeFiles/rebuild_cache.dir
+/home/michael/Dev/Ink/build/vendor/glfw/src/CMakeFiles/glfw.dir
+/home/michael/Dev/Ink/build/vendor/glfw/src/CMakeFiles/update_mappings.dir
+/home/michael/Dev/Ink/build/vendor/glfw/src/CMakeFiles/edit_cache.dir
+/home/michael/Dev/Ink/build/vendor/glfw/src/CMakeFiles/rebuild_cache.dir

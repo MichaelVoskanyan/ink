@@ -1,16 +1,16 @@
-cmake_minimum_required(VERSION 3.27)
+cmake_minimum_required(VERSION 3.21)
 project(Ink)
 
 set(CMAKE_CXX_STANDARD 17)
 
 include_directories(
     "vendor/glad/include"
-    "vendor/GLFW/include"
+    "vendor/glfw/include"
     "vendor/GLM"
     "ink/include"
 )
 
-add_subdirectory(vendor/GLFW)
+add_subdirectory(vendor/glfw)
 
 link_directories("vendor/glfw/src/Debug")
 
