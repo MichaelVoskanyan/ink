@@ -3,7 +3,8 @@
 ## 6/12/2024
 
 ### TODO
-- [ ] Implement collision detection
+- [X] Implement collision detection
+  - Box Collider implemented `class CBoxCollider : public Component`
 - [ ] Implement Physics bodies: static/rigid body
 
 ## 6/01/2024

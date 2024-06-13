@@ -14,6 +14,8 @@ add_subdirectory(vendor/glfw)
 
 link_directories("vendor/glfw/src/Debug")
 
+set(CMAKE_BUILD_TYPE Debug)
+
 set (GLFW_BUILD_EXAMPLES OFF CACHE INTERNAL "Build the GLFW example programs")
 set (GLFW_BUILD_TESTS OFF CACHE INTERNAL "Build the GLFW test programs")
 set (GLFW_BUILD_DOCS OFF CACHE INTERNAL "Build the GLFW documentations")

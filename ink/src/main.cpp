@@ -113,7 +113,7 @@ public:
       for(auto& e : entities) {
         e->LateUpdate();
       }
-
+      throw std::invalid_argument("Test Exception");
       if(CBoxCollider::CheckCollision(*playerCol, *blockCol)) {
         std::shared_ptr<CPhysicsBody> playerPhys = player->GetComponent<CPhysicsBody>();
         glm::vec3 currVel = playerPhys->Velocity();
