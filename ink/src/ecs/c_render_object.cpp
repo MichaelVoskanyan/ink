@@ -100,5 +100,5 @@ void CRenderObject::SetShape(ShapeType shapeType, float size) {
 }
 
 void CRenderObject::SetShader(Shader* shader) {
-  this->shader = shader;
+  this->shader = std::shared_ptr<Shader>(shader);
 }
