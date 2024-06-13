@@ -41,6 +41,64 @@ void CRenderObject::UpdateTransformMatrix() {
   renderObject->SetModelMat(transform);
 }
 
-void CRenderObject::SetShader(std::shared_ptr<Shader> shader) {
+void CRenderObject::SetShape(ShapeType shapeType, float size) {
+  vertices.clear();
+  indices.clear();
+
+  switch(shapeType) {
+  case ShapeType::Triangle: {
+    float halfSize = size / 2.0f;
+    float height = std::sqrt(size * size - halfSize * halfSize);
+
+    vertices = {0.0f, height, 0.0f, -halfSize, 0.0f, 0.0f, halfSize, 0.0f, 0.0f};
+
+    indices = {0, 1, 2};
+
+    break;
+  }
+  case ShapeType::Square: {
+    float halfSize = size / 2.0f;
+
+    vertices = {-halfSize, halfSize,  0.0f, -halfSize, -halfSize, 0.0f,
+                halfSize,  -halfSize, 0.0f, halfSize,  halfSize,  0.0f};
+
+    indices = {0, 1, 2, 2, 3, 0};
+
+    break;
+  }
+  case ShapeType::Circle: {
+    const int segments = 36;
+    float angleIncrement = 2.0f * 3.14159265358979323846f / segments;
+
+    vertices.push_back(0.0f); // Center vertex
+    vertices.push_back(0.0f);
+    vertices.push_back(0.0f);
+
+    for(int i = 0; i <= segments; ++i) {
+      float angle = i * angleIncrement;
+      float x = size * std::cos(angle);
+      float y = size * std::sin(angle);
+
+      vertices.push_back(x);
+      vertices.push_back(y);
+      vertices.push_back(0.0f);
+
+      if(i > 0) {
+        indices.push_back(0);
+        indices.push_back(i);
+        indices.push_back(i + 1);
+      }
+    }
+
+    indices.back() = 1; // Connect the last triangle to the first
+
+    break;
+  }
+  default:
+    throw std::invalid_argument("Unsupported shape type");
+  }
+}
+
+void CRenderObject::SetShader(Shader* shader) {
   this->shader = shader;
 }
