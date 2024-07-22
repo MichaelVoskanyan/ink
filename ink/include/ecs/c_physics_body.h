@@ -11,7 +11,7 @@ public:
   void Update(float deltaTime) override;
   void PhysicsUpdate(float fixedDeltaTime) override;
   void LateUpdate() override;
-  // PhysicsBody(glm::vec3 position, glm::vec3 size);
+  CPhysicsBody(glm::vec3 position, glm::vec3 size);
 
   void Velocity(glm::vec3 v);
   glm::vec3 Velocity() const;
@@ -23,10 +23,10 @@ public:
 
   void UpdateCollisions(bool collision);
 
-private:
+protected:
   glm::vec3 _acceleration;
   glm::vec3 _velocity;
   bool prevCollision;
   bool currCollision;
-  const float GRAVITY = 0.5f; // acceleration due to gravity
+  const float GRAVITY = 9.81f; // acceleration due to gravity
 };

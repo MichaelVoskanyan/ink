@@ -21,9 +21,11 @@ public:
   void UpdateCollisions(bool collision);
 
   private:
-    const float GRAVITY = 5.5f; // acceleration due to gravity
+    const float GRAVITY = 5.8f; // acceleration due to gravity
+    const float velocity_threshold = 0.01f;
     glm::vec3 _acceleration;
     glm::vec3 _velocity;
     bool prevCollision;
     bool currCollision;
+    bool stopped;
 };
