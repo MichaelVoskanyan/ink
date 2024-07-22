@@ -28,7 +28,6 @@ public:
     auto camera = Camera::GetInstance();
 
     std::vector<float> verts1 = {-0.5f, -0.5f, 0.0f, -0.5f, 0.5f, 0.0f, 0.5f, 0.5f, 0.0f, 0.5f, -0.5f, 0.0f};
-
     std::vector<uint32_t> physicsinds = {0, 1, 2, 0, 2, 3};
 
     player = std::make_shared<Entity>();
@@ -51,15 +50,15 @@ public:
 
     player->position = glm::vec3(0.f, 0.f, 0.f);
     player->rotation = glm::vec3(0.f);
-    player->scale = glm::vec3(1.f);
+    player->scale = glm::vec3(.25f);
 
-    block->position = glm::vec3(0.f, -1.25f, 0.f);
+    block->position = glm::vec3(0.f, -1.5f, 0.f);
     block->rotation = glm::vec3(0.f);
-    block->scale = glm::vec3(1.f);
+    block->scale = glm::vec3(5.f, 1.f, 1.f);
 
-    playerCol->m_width = 1;
-    playerCol->m_height = 1;
-    blockCol->m_width = 1;
+    playerCol->m_width = 0.25;
+    playerCol->m_height = 0.25;
+    blockCol->m_width = 5;
     blockCol->m_height = 1;
 
     entities.push_back(player);
