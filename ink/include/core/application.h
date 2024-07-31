@@ -12,9 +12,9 @@ class Entity;
 
 class Application {
 protected:
-  std::unique_ptr<Window> m_Window; // Window class handle
+  std::unique_ptr<Window> _window; // Window class handle
   float deltaTime = 0, lastFrame = 0, currentTime = 0; // Delta time
-  std::vector<std::shared_ptr<Entity>> entities; // queue of Entities.
+  std::vector<std::shared_ptr<Entity>> _entities; // queue of Entities.
 
 public:
   virtual ~Application() {}

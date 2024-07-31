@@ -7,7 +7,7 @@
 class Ink : public Application {
 public:
   Ink() {
-    m_Window = std::unique_ptr<Window>(Window::Create());
+    _window = std::unique_ptr<Window>(Window::Create());
 
     Start();
   }
@@ -62,10 +62,10 @@ public:
     blockCol->m_width = 1;
     blockCol->m_height = 1;
 
-    entities.push_back(player);
-    entities.push_back(block);
+    _entities.push_back(player);
+    _entities.push_back(block);
 
-    for(auto& e : entities) {
+    for(auto& e : _entities) {
       e->Init();
       e->Start();
     }
@@ -73,17 +73,17 @@ public:
 
   void Run() {
 
-    while(!glfwWindowShouldClose(m_Window->GetGlfwWindow())) {
+    while(!glfwWindowShouldClose(_window->GetGlfwWindow())) {
       glClear(GL_COLOR_BUFFER_BIT);
       float currentFrame = (float)glfwGetTime();
       deltaTime = currentFrame - lastFrame;
       lastFrame = currentFrame;
 
-      for(auto& e : entities) {
+      for(auto& e : _entities) {
         e->Update(deltaTime);
       }
 
-      for(auto& e : entities) {
+      for(auto& e : _entities) {
         e->LateUpdate();
       }
 
@@ -96,7 +96,7 @@ public:
       }
 
       glfwPollEvents();
-      glfwSwapBuffers(m_Window->GetGlfwWindow());
+      glfwSwapBuffers(_window->GetGlfwWindow());
     }
   }
 };
