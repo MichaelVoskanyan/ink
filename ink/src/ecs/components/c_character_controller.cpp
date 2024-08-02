@@ -2,27 +2,33 @@
 #include <ecs/entity.h>
 #include <GLFW/glfw3.h>
 
-void CCharacterController::Init() {}
+void C_CharacterController::init() {}
 
-void CCharacterController::Start() {}
+void C_CharacterController::start() {}
 
-void CCharacterController::Update(float deltaTime) {
-  ProcessKeyboard(deltaTime);
+void C_CharacterController::update(float deltaTime)
+{
+	process_keyboard(deltaTime);
 }
 
-void CCharacterController::LateUpdate() {}
+void C_CharacterController::late_update() {}
 
-void CCharacterController::ProcessKeyboard(float deltaTime) {
-  if(glfwGetKey(glfwGetCurrentContext(), GLFW_KEY_W) == GLFW_PRESS) {
-    owner->position.y += 5.f * deltaTime;
-  }
-  if(glfwGetKey(glfwGetCurrentContext(), GLFW_KEY_S) == GLFW_PRESS) {
-    owner->position.y -= 5.f * deltaTime;
-  }
-  if(glfwGetKey(glfwGetCurrentContext(), GLFW_KEY_D) == GLFW_PRESS) {
-    owner->position.x += 5.f * deltaTime;
-  }
-  if(glfwGetKey(glfwGetCurrentContext(), GLFW_KEY_A) == GLFW_PRESS) {
-    owner->position.x -= 5.f * deltaTime;
-  }
+void C_CharacterController::process_keyboard(float deltaTime)
+{
+    if(glfwGetKey(glfwGetCurrentContext(), GLFW_KEY_W) == GLFW_PRESS)
+    {
+		m_owner->m_position.y += 5.f * deltaTime;
+    }
+    if(glfwGetKey(glfwGetCurrentContext(), GLFW_KEY_S) == GLFW_PRESS)
+    {
+		m_owner->m_position.y -= 5.f * deltaTime;
+    }
+    if(glfwGetKey(glfwGetCurrentContext(), GLFW_KEY_D) == GLFW_PRESS)
+    {
+		m_owner->m_position.x += 5.f * deltaTime;
+    }
+    if(glfwGetKey(glfwGetCurrentContext(), GLFW_KEY_A) == GLFW_PRESS)
+    {
+		m_owner->m_position.x -= 5.f * deltaTime;
+    }
 }

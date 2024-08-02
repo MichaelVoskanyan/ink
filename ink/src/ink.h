@@ -1,8 +1,9 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-#include "renderer/render_object.h"
-#include "renderer/vertex_array.h"
+#include "renderer/buffers.h"
+#include "renderer/camera.h"
+#include "renderer/shader.h"
 
 #include "ecs/entity.h"
 #include "ecs/component.h"
@@ -11,8 +12,6 @@
 #include "ecs/components/c_physics_body.h"
 #include "ecs/components/c_box_collider.h"
 
-#include "core/camera.h"
-#include "core/shader.h"
 #include "core/window.h"
 #include "core/application.h"
 

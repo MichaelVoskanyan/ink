@@ -4,7 +4,7 @@
 
 ### TODO
 - [X] Implement collision detection
-  - Box Collider implemented `class CBoxCollider : public Component`
+  - Box Collider implemented `class C_BoxCollider : public Component`
 - [ ] Implement Physics bodies: static/rigid body
 
 ## 6/01/2024

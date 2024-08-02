@@ -1,102 +1,55 @@
-#include <ecs/components/c_render_object.h>
-#include <ecs/entity.h>
+#include "c_render_object.h"
+#include "ecs/entity.h"
 
-#include <renderer/render_object.h>
-#include <renderer/renderer.h>
-#include <core/camera.h>
-#include <core/shader.h>
+#include <utility>
 
-#include <glm/gtc/matrix_transform.hpp>
-
-void CRenderObject::Init() {
-  renderObject = RenderObject::Create(vertices, indices);
+C_RenderObject::~C_RenderObject()
+{
+	m_renderObject.reset();
 }
 
-void CRenderObject::Start() {}
-
-void CRenderObject::Update(float deltaTime) {
-  UpdateTransformMatrix();
+void C_RenderObject::init_render_object(Ref<RenderObject> renderObj)
+{
+	m_renderObject = std::move(renderObj);
+	Renderer::get_instance()->queue_render_object(m_renderObject);
 }
 
-void CRenderObject::LateUpdate() {
-  glm::mat4 vp = glm::mat4(1.f);
-  auto h_cam = Camera::GetInstance();
-  vp *= h_cam->GetProjection(800, 600);
-  vp *= h_cam->GetView();
-  renderObject->DrawRenderObject(shader.get(), vp);
+void C_RenderObject::init_render_object(Ref<VertexArray> vertexArray, Ref<Shader> shader)
+{
+	m_renderObject = std::make_shared<RenderObject>(vertexArray, shader, glm::mat4(1.f));
+	Renderer::get_instance()->queue_render_object(m_renderObject);
 }
 
-void CRenderObject::UpdateTransformMatrix() {
-  glm::mat4 transform = glm::mat4(1.f);
-
-  transform = glm::translate(transform, owner->position);
-
-  transform = glm::rotate(transform, glm::radians(owner->rotation.x), glm::vec3(1.f, 0.f, 0.f));
-  transform = glm::rotate(transform, glm::radians(owner->rotation.y), glm::vec3(0.f, 1.f, 0.f));
-  transform = glm::rotate(transform, glm::radians(owner->rotation.z), glm::vec3(0.f, 0.f, 1.f));
-
-  transform = glm::scale(transform, owner->scale);
-  renderObject->SetModelMat(transform);
+void C_RenderObject::clear_render_object()
+{
+	auto renderInstance = Renderer::get_instance();
+	renderInstance->remove_from_queue(m_renderObject);
+	m_renderObject.reset();
 }
 
-void CRenderObject::SetShape(ShapeType shapeType, float size) {
-  vertices.clear();
-  indices.clear();
+void C_RenderObject::update_transform_matrix()
+{
+	auto transform = glm::mat4(1.f);
+	transform = glm::translate(transform, m_owner->m_position);
+	transform = transform * glm::mat4_cast(m_owner->m_rotation);
+	transform = glm::scale(transform, m_owner->m_scale);
 
-  switch(shapeType) {
-  case ShapeType::Triangle: {
-    float halfSize = size / 2.0f;
-    float height = std::sqrt(size * size - halfSize * halfSize);
+	m_renderObject->transform = transform;
+}
+void C_RenderObject::init()
+{
 
-    vertices = {0.0f, height, 0.0f, -halfSize, 0.0f, 0.0f, halfSize, 0.0f, 0.0f};
+}
+void C_RenderObject::start()
+{
 
-    indices = {0, 1, 2};
+}
+void C_RenderObject::update(float deltaTime)
+{
+	update_transform_matrix();
+}
+void C_RenderObject::late_update()
+{
 
-    break;
-  }
-  case ShapeType::Square: {
-    float halfSize = size / 2.0f;
-
-    vertices = {-halfSize, halfSize,  0.0f, -halfSize, -halfSize, 0.0f,
-                halfSize,  -halfSize, 0.0f, halfSize,  halfSize,  0.0f};
-
-    indices = {0, 1, 2, 2, 3, 0};
-
-    break;
-  }
-  case ShapeType::Circle: {
-    const int segments = 36;
-    float angleIncrement = 2.0f * 3.14159265358979323846f / segments;
-
-    vertices.push_back(0.0f); // Center vertex
-    vertices.push_back(0.0f);
-    vertices.push_back(0.0f);
-
-    for(int i = 0; i <= segments; ++i) {
-      float angle = i * angleIncrement;
-      float x = size * std::cos(angle);
-      float y = size * std::sin(angle);
-
-      vertices.push_back(x);
-      vertices.push_back(y);
-      vertices.push_back(0.0f);
-
-      if(i > 0) {
-        indices.push_back(0);
-        indices.push_back(i);
-        indices.push_back(i + 1);
-      }
-    }
-
-    indices.back() = 1; // Connect the last triangle to the first
-
-    break;
-  }
-  default:
-    throw std::invalid_argument("Unsupported shape type");
-  }
 }
 
-void CRenderObject::SetShader(std::shared_ptr<Shader> shader) {
-  this->shader = shader;
-}

@@ -1,57 +1,106 @@
-#include <renderer/renderer.h>
-#include <renderer/render_object.h>
-#include <core/shader.h>
+#include "renderer.h"
 
-Renderer* Renderer::h_instance = nullptr;
+#include <GLFW/glfw3.h>
 
-Renderer::Renderer() {
-  queue = std::vector<std::shared_ptr<RenderObject>>();
-  h_shader = NULL;
+RenderObject::RenderObject(Ref<VertexArray> vertexArray, Ref<Shader> shader, glm::mat4 transform)
+		:vertexArray(vertexArray), shader(shader), transform(transform)
+{ }
+
+namespace RenderAPI
+{
+
+void set_clear_color(const glm::vec4& color)
+{
+	glClearColor(color.r, color.g, color.b, color.a);
 }
 
-void Renderer::setGlfwWindowInst(GLFWwindow* win) {
-  this->h_window = win;
+void set_clear_color(f32 r, f32 g, f32 b, f32 a)
+{
+	glClearColor(r, g, b, a);
 }
 
-void Renderer::setActiveShaderHandle(Shader* shader) {
-  this->h_shader = shader;
+void clear()
+{
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
-Renderer* Renderer::getInstance() {
-  if(h_instance == NULL) {
-    h_instance = new Renderer();
-
-    return h_instance;
-  } else {
-    return h_instance;
-  }
+void swap_buffers()
+{
+	glfwSwapBuffers(glfwGetCurrentContext());
 }
 
-void Renderer::pushBackRenderQueue(std::shared_ptr<RenderObject> rendObj) {
-  this->queue.push_back(rendObj);
+void draw(Shader& shader, VertexArray& vertexArray, const glm::mat4& transform)
+{
+	shader.bind();
+	vertexArray.bind();
+
+	shader.set_mat4("u_viewProjection", Renderer::s_viewProjectionMatrix);
+	shader.set_mat4("u_transform", transform);
+
+	glDrawElements(GL_TRIANGLES, vertexArray.get_index_count(), GL_UNSIGNED_INT, nullptr);
 }
 
-void Renderer::clearRenderQueue() {
-  this->queue.clear();
+void draw(Scope<RenderObject> renderObject)
+{
+	renderObject->shader->bind();
+	renderObject->vertexArray->bind();
+
+	renderObject->shader->set_mat4("u_viewProjection", Renderer::s_viewProjectionMatrix);
+	renderObject->shader->set_mat4("u_transform", renderObject->transform);
+
+	glDrawElements(GL_TRIANGLES, renderObject->vertexArray->get_index_count(), GL_UNSIGNED_INT, nullptr);
 }
 
-void Renderer::drawQueue(glm::mat4 view, glm::mat4 proj) {
-  if(h_shader == NULL) {
-    std::cerr << "Renderer::h_Shader is NULL\n";
-    return;
-  }
-  if(h_instance == NULL) {
-    std::cerr << "Renderer::Static instance h_instance is NULL\n";
-    return;
-  }
 
-  h_shader->use();
+}	// namespace RenderAPI
 
-  glm::mat4 mvp = glm::mat4(1.f);
-  mvp *= proj;
-  mvp *= view;
+glm::mat4 Renderer::s_viewProjectionMatrix = glm::mat4(1.f);
+Renderer* Renderer::s_instance = nullptr;
 
-  for(auto a : queue) {
-    a->drawRenderObject(h_shader, mvp);
-  }
+Renderer::Renderer()
+{
+	m_renderQueue = Vec<Ref<RenderObject>>();
+}
+
+Renderer *Renderer::get_instance()
+{
+	if (nullptr == s_instance)
+	{
+		s_instance = new Renderer();
+	}
+	return s_instance;
+}
+
+void Renderer::queue_render_object(const Ref<RenderObject>& renderObject)
+{
+	m_renderQueue.push_back(renderObject);
+}
+
+void Renderer::remove_from_queue(const Ref<RenderObject> &renderObject)
+{
+	auto obj = std::find(m_renderQueue.begin(), m_renderQueue.end(), renderObject);
+	m_renderQueue.erase(obj);
+}
+
+void Renderer::clear_render_queue()
+{
+	m_renderQueue.clear();
+}
+
+void Renderer::draw_queue() const
+{
+	for (auto& o : m_renderQueue)
+	{
+		o->shader->bind();
+		o->vertexArray->bind();
+
+//		o->shader->set_mat4("u_viewProjection", s_viewProjectionMatrix);
+//		o->shader->set_mat4("u_transform", o->transform);
+
+//		o->shader->set_mat4("MVP", s_viewProjectionMatrix * o->transform);
+
+		o->shader->set_mat4("MVP", o->transform);
+		glDrawElements(GL_TRIANGLES, o->vertexArray->get_index_count(), GL_UNSIGNED_INT, nullptr);
+
+	}
 }

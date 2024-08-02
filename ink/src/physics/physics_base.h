@@ -18,10 +18,10 @@
 
 class PhysicsBody {
 private:
-  glm::vec3 _acceleration;
-  glm::vec3 _velocity;
-  glm::vec3 _position;           // reference to world position of the object
-  glm::vec3 _size;               // bounding box for collision detection
+  glm::vec3 m_acceleration;
+  glm::vec3 m_velocity;
+  glm::vec3 m_position;           // reference to world position of the object
+  glm::vec3 m_size;               // bounding box for collision detection
   const int FRAMES_PER_SEC = 60; // 60 FPS for time deltas
   const float GRAVITY = 0.1f;    // acceleration due to gravity
 
@@ -29,18 +29,18 @@ public:
   PhysicsBody();
   PhysicsBody(glm::vec3 position, glm::vec3 size);
 
-  void Velocity(glm::vec3 v);
-  glm::vec3 Velocity() const;
+  void velocity(glm::vec3 v);
+  glm::vec3 velocity() const;
 
-  void Acceleration(glm::vec3 a);
-  glm::vec3 Acceleration() const;
-  glm::vec3 Size() const;
-  glm::vec3 Position() const;
+  void acceleration(glm::vec3 a);
+  glm::vec3 acceleration() const;
+  glm::vec3 size() const;
+  glm::vec3 position() const;
 
-  void SetPosition(glm::vec3 pos);
-  void UpdatePosition(float deltaTime);
-  void UpdatePositionRef(float deltaTime, glm::vec3 &position);
-  void UpdateVelocity();
+  void set_position(glm::vec3 pos);
+  void update_position(float deltaTime);
+  void update_position_ref(float deltaTime, glm::vec3 &position);
+  void update_velocity();
 };
 
 #endif // INK_PHYSICSBASE_H

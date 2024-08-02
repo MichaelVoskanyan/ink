@@ -3,39 +3,46 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 
-void CPhysicsBody::Init() {
-  _acceleration = glm::vec3(0.0f, -GRAVITY, 0.0f);
-  _velocity = glm::vec3(0.0f);
+void C_PhysicsBody::init()
+{
+	m_acceleration = glm::vec3(0.0f, -GRAVITY, 0.0f);
+	m_velocity = glm::vec3(0.0f);
 }
 
-void CPhysicsBody::Start() {}
+void C_PhysicsBody::start() {}
 
-void CPhysicsBody::Update(float deltaTime) {
-  UpdatePositionRef(deltaTime, owner->position);
+void C_PhysicsBody::update(float deltaTime)
+{
+	update_position_ref(deltaTime, m_owner->m_position);
 }
 
-void CPhysicsBody::LateUpdate() {}
+void C_PhysicsBody::late_update() {}
 
-void CPhysicsBody::Velocity(glm::vec3 v) {
-  _velocity = v;
+void C_PhysicsBody::velocity(glm::vec3 v)
+{
+	m_velocity = v;
 }
 
-glm::vec3 CPhysicsBody::Velocity() const {
-  return _velocity;
+glm::vec3 C_PhysicsBody::velocity() const
+{
+    return m_velocity;
 }
 
-void CPhysicsBody::Acceleration(glm::vec3 a) {
-  _acceleration = a;
+void C_PhysicsBody::acceleration(glm::vec3 a)
+{
+	m_acceleration = a;
 }
 
-glm::vec3 CPhysicsBody::Acceleration() const {
-  return _acceleration;
+glm::vec3 C_PhysicsBody::acceleration() const
+{
+    return m_acceleration;
 }
 
-void CPhysicsBody::UpdatePositionRef(float deltaTime, glm::vec3& position) {
-  _velocity += _acceleration * deltaTime;
-  position += _velocity * deltaTime;
-  // std::cout << "Accel: " << _acceleration.x << ", " << _acceleration.y << std::endl;
-  // std::cout << "Velocity: " << _velocity.x << ", " << _velocity.y << std::endl;
-  // std::cout << "Position: " << position.x << ", " << position.y << std::endl;
+void C_PhysicsBody::update_position_ref(float deltaTime, glm::vec3 &position)
+{
+	m_velocity += m_acceleration * deltaTime;
+    position += m_velocity * deltaTime;
+    // std::cout << "Accel: " << _acceleration.x << ", " << _acceleration.y << std::endl;
+    // std::cout << "Velocity: " << _velocity.x << ", " << _velocity.y << std::endl;
+    // std::cout << "Position: " << position.x << ", " << position.y << std::endl;
 }

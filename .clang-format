@@ -1,8 +1,8 @@
 BasedOnStyle: LLVM
-IndentWidth: 2
+IndentWidth: 4
 
 Language: Cpp
-AccessModifierOffset: -2
+AccessModifierOffset: -4
 
 AlignAfterOpenBracket: true
 AlignConsecutiveAssignments: false
@@ -17,24 +17,32 @@ AllowShortIfStatementsOnASingleLine: false
 AllowShortLoopsOnASingleLine: false
 AlwaysBreakTemplateDeclarations: true
 
+SpaceBeforeCtorInitializerColon: true
+ConstructorInitializerIndentWidth: 4
+BreakBeforeInheritanceComma: false
+BreakInheritanceList: BeforeColon
+BreakConstructorInitializersBeforeComma: false
+BreakConstructorInitializers: BeforeColon
+ConstructorInitializerAllOnOneLineOrOnePerLine: true
+
 DerivePointerAlignment: false
-PointerAlignment: Left
+PointerAlignment: Right
 ColumnLimit: 120
 
 SortIncludes: false
 BreakBeforeBraces: Custom
 BraceWrapping:
-  AfterClass: false
-  AfterControlStatement: MultiLine
-  AfterEnum: false
-  AfterFunction: false
-  AfterNamespace: false
-  AfterStruct: false
-  AfterUnion : false
-  BeforeCatch : false
-  BeforeElse : false
+  AfterClass: true
+  AfterControlStatement: Always
+  AfterEnum: true
+  AfterFunction: true
+  AfterNamespace: true
+  AfterStruct: true
+  AfterUnion : true
+  BeforeCatch : true
+  BeforeElse : true
   IndentBraces : false
-  AfterExternBlock : false
+  AfterExternBlock : true
   SplitEmptyFunction : false
   SplitEmptyRecord : false
   SplitEmptyNamespace : false

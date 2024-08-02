@@ -7,7 +7,7 @@ include_directories(
     "vendor/glad/include"
     "vendor/glfw/include"
     "vendor/GLM"
-    "ink/include"
+    "ink/src"
 )
 
 add_subdirectory(vendor/glfw)
@@ -22,32 +22,45 @@ set (GLFW_BUILD_DOCS OFF CACHE INTERNAL "Build the GLFW documentations")
 set (GLFW_INSTALL OFF CACHE INTERNAL "Generate installation target")
 
 set(SOURCE_RENDERER
-    "ink/src/renderer/buffers.cpp"
-    "ink/src/renderer/vertex_array.cpp"
-    "ink/src/renderer/render_object.cpp"
-    # "ink/src/renderer/renderer.cpp"
+    ink/src/renderer/shader.h
+    ink/src/renderer/camera.h
+    ink/src/renderer/buffers.h
+    ink/src/renderer/renderer.h
+
+    ink/src/renderer/shader.cpp
+    ink/src/renderer/camera.cpp
+    ink/src/renderer/buffers.cpp
+    ink/src/renderer/renderer.cpp
 )
 
 set(SOURCE_PHYSICS
-    "ink/src/physics/physics_base.cpp"
-    "ink/src/physics/physics_engine.cpp"
+    ink/src/physics/physics_base.h
+    ink/src/physics/physics_engine.h
+
+    ink/src/physics/physics_base.cpp
+    ink/src/physics/physics_engine.cpp
 )
 
 set(SOURCE_ECS
-    "ink/src/ecs/entity.cpp"
-    "ink/include/ecs/component.h"
-    "ink/src/ecs/components/c_render_object.cpp"
-    "ink/src/ecs/components/c_character_controller.cpp"
-    "ink/src/ecs/components/c_physics_body.cpp"
-    "ink/src/ecs/components/c_box_collider.cpp"
+    ink/src/ecs/component.h
+    ink/src/ecs/entity.h
+    ink/src/ecs/components/c_render_object.h
+    ink/src/ecs/components/c_character_controller.h
+    ink/src/ecs/components/c_physics_body.h
+    ink/src/ecs/components/c_box_collider.h
+
+
+    ink/src/ecs/entity.cpp
+    ink/src/ecs/components/c_render_object.cpp
+    ink/src/ecs/components/c_character_controller.cpp
+    ink/src/ecs/components/c_physics_body.cpp
+    ink/src/ecs/components/c_box_collider.cpp
 )
 
 set(SOURCE
-    "vendor/glad/src/glad.c"
-    "ink/src/core/window.cpp"
-    "ink/src/core/shader.cpp"
-    "ink/src/core/camera.cpp"
-    "ink/src/main.cpp"
+    vendor/glad/src/glad.c
+    ink/src/core/window.cpp
+    ink/src/entry.cpp
 )
 
 add_executable(Ink 

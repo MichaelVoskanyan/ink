@@ -9,7 +9,7 @@ struct GLFWwindow;
  * Basic framebuffer size callback function. Effectively just used for function
  * pointer within glfwSetFramebufferSizeCallback(GLFWwindow *, function_name);
  */
-void framebuffer_size_callback(GLFWwindow* wind, int width, int height);
+void framebuffer_size_callback(GLFWwindow *wind, int width, int height);
 
 // struct Window {
 //   // Data for window creation
@@ -27,31 +27,34 @@ void framebuffer_size_callback(GLFWwindow* wind, int width, int height);
 //   void InitWindow();
 // };
 
-struct WindowProps {
-  uint32_t width;
-  uint32_t height;
-  const char* title;
+struct WindowProps
+{
+    uint32_t width;
+    uint32_t height;
+    const char *title;
 
-  WindowProps(uint32_t width = 800, uint32_t height = 600, const char* title = "Window")
-      : width(width), height(height), title(title) {}
+    WindowProps(uint32_t width = 800, uint32_t height = 600, const char *title = "Window")
+        : width(width), height(height), title(title)
+    {}
 };
 
-class Window {
+class Window
+{
 public:
-  Window(const WindowProps& props = WindowProps());
-  ~Window() {}
+    Window(const WindowProps &props = WindowProps());
+    ~Window() {}
 
-  void Update();
+    void update();
 
-  void SetVSync(bool enabled);
-  bool IsVSync() const;
+    void set_vsync(bool enabled);
+    bool is_vsync() const;
 
-  GLFWwindow* GetGlfwWindow();
+    GLFWwindow *get_glfw_window();
 
-  static Window* Create(const WindowProps& props = WindowProps());
+    static Window *create(const WindowProps &props = WindowProps());
 
 private:
-  GLFWwindow* m_Window;
+    GLFWwindow *m_window;
 };
 
 #endif

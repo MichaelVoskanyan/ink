@@ -1,4 +1,4 @@
-# CBoxCollider
+# C_BoxCollider
 
-`class CBoxCollider` inherits from `class Component`, which can be viewed [here](./component.md).
+`class C_BoxCollider` inherits from `class Component`, which can be viewed [here](./component.md).
 

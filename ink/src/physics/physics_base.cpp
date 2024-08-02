@@ -1,51 +1,51 @@
 #include <physics/physics_base.h>
 #include <iostream>
 
-PhysicsBody::PhysicsBody(glm::vec3 position, glm::vec3 size) : _position(position), _size(size) {
-  _acceleration = glm::vec3(0.0f, -GRAVITY, 0.0f);
-  _velocity = glm::vec3(0.0f);
+PhysicsBody::PhysicsBody(glm::vec3 position, glm::vec3 size) :m_position(position), m_size(size) {
+	m_acceleration = glm::vec3(0.0f, -GRAVITY, 0.0f);
+	m_velocity = glm::vec3(0.0f);
 }
 
-void PhysicsBody::Velocity(glm::vec3 v) {
-  _velocity = v;
+void PhysicsBody::velocity(glm::vec3 v) {
+	m_velocity = v;
 }
 
-glm::vec3 PhysicsBody::Velocity() const {
-  return _velocity;
+glm::vec3 PhysicsBody::velocity() const {
+  return m_velocity;
 }
 
-void PhysicsBody::Acceleration(glm::vec3 a) {
-  _acceleration = a;
+void PhysicsBody::acceleration(glm::vec3 a) {
+	m_acceleration = a;
 }
 
-glm::vec3 PhysicsBody::Acceleration() const {
-  return _acceleration;
+glm::vec3 PhysicsBody::acceleration() const {
+  return m_acceleration;
 }
 
-glm::vec3 PhysicsBody::Position() const {
-  return _position;
+glm::vec3 PhysicsBody::position() const {
+  return m_position;
 }
 
-glm::vec3 PhysicsBody::Size() const {
-  return _size;
+glm::vec3 PhysicsBody::size() const {
+  return m_size;
 }
 
-void PhysicsBody::SetPosition(glm::vec3 pos) {
-  _position = pos;
+void PhysicsBody::set_position(glm::vec3 pos) {
+	m_position = pos;
 }
 
-void PhysicsBody::UpdatePosition(float deltaTime) {
+void PhysicsBody::update_position(float deltaTime) {
   // Update velocity
-  _velocity += _acceleration * deltaTime;
+  m_velocity += m_acceleration * deltaTime;
 
   // Update position
-  _position += _velocity * deltaTime;
+  m_position += m_velocity * deltaTime;
 }
 
-void PhysicsBody::UpdatePositionRef(float deltaTime, glm::vec3& position) {
-  _velocity += _acceleration * deltaTime;
-  position += _velocity * deltaTime;
-  std::cout << "Accel: " << _acceleration.x << ", " << _acceleration.y << std::endl;
-  std::cout << "Velocity: " << _velocity.x << ", " << _velocity.y << std::endl;
-  std::cout << "Position: " << position.x << ", " << position.y << std::endl;
+void PhysicsBody::update_position_ref(float deltaTime, glm::vec3& position) {
+	m_velocity += m_acceleration * deltaTime;
+  position += m_velocity * deltaTime;
+  std::cout << "Accel: " << m_acceleration.x << ", " << m_acceleration.y << std::endl;
+  std::cout << "velocity: " << m_velocity.x << ", " << m_velocity.y << std::endl;
+  std::cout << "position: " << position.x << ", " << position.y << std::endl;
 }
