@@ -80,6 +80,8 @@ public:
 //        renderer->queue_render_object(ro->getRenderObject());
 //        renderer->addToRenderQueue(blockRend->getRenderObject());
 
+
+
         for(auto &e : m_entities)
         {
             e->init();
@@ -89,10 +91,12 @@ public:
 
     void Run()
     {
+		Renderer::s_viewProjectionMatrix = glm::perspective(glm::radians(65.f), (float)800/(float)600, 0.01f, 100.f);
+		Renderer::s_viewProjectionMatrix *= glm::lookAt(glm::vec3(0.f, 0.f, -3.f), glm::vec3(0.f, 0.f, -2.f), glm::vec3(0.f, 1.f, 0.f));
 
         while(!glfwWindowShouldClose(m_window->get_glfw_window()))
         {
-            glClear(GL_COLOR_BUFFER_BIT);
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             float currentFrame = (float)glfwGetTime();
 			m_deltaTime = currentFrame - m_lastFrame;
 			m_lastFrame = currentFrame;

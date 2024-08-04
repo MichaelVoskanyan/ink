@@ -94,12 +94,12 @@ void Renderer::draw_queue() const
 		o->shader->bind();
 		o->vertexArray->bind();
 
-//		o->shader->set_mat4("u_viewProjection", s_viewProjectionMatrix);
-//		o->shader->set_mat4("u_transform", o->transform);
+		o->shader->set_mat4("u_viewProjection", s_viewProjectionMatrix);
+		o->shader->set_mat4("u_transform", o->transform);
 
 //		o->shader->set_mat4("MVP", s_viewProjectionMatrix * o->transform);
 
-		o->shader->set_mat4("MVP", o->transform);
+//		o->shader->set_mat4("MVP", o->transform);
 		glDrawElements(GL_TRIANGLES, o->vertexArray->get_index_count(), GL_UNSIGNED_INT, nullptr);
 
 	}
