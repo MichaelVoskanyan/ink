@@ -12,11 +12,13 @@
 #include "ecs/components/c_physics_body.h"
 #include "ecs/components/c_box_collider.h"
 
+#include "event/event.h"
+#include "event/collision_event.h"
+
 #include "core/window.h"
 #include "core/application.h"
 
 #include "physics/physics_base.h"
-#include "physics/physics_engine.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>

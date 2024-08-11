@@ -19,6 +19,8 @@ public:
     virtual void start() = 0;
     virtual void update(float deltaTime) = 0;
     virtual void late_update() = 0;
+
+    inline Entity* get_owner() const { return m_owner; }
 };
 
 #endif

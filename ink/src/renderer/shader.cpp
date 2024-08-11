@@ -68,7 +68,7 @@ Shader::Shader(const char *vertexPath, const char *fragmentPath)
         std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl;
     }
 
-	m_rendererID = glCreateProgram();
+    m_rendererID = glCreateProgram();
     glAttachShader(m_rendererID, vertex);
     glAttachShader(m_rendererID, fragment);
     glLinkProgram(m_rendererID);

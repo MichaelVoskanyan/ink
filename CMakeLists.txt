@@ -35,10 +35,10 @@ set(SOURCE_RENDERER
 
 set(SOURCE_PHYSICS
     ink/src/physics/physics_base.h
-    ink/src/physics/physics_engine.h
+    ink/src/event/event.h
+    ink/src/event/collision_event.h
 
     ink/src/physics/physics_base.cpp
-    ink/src/physics/physics_engine.cpp
 )
 
 set(SOURCE_ECS

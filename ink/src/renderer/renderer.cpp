@@ -1,5 +1,6 @@
 #include "renderer.h"
 
+#include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
 RenderObject::RenderObject(Ref<VertexArray> vertexArray, Ref<Shader> shader, glm::mat4 transform)
@@ -40,18 +41,6 @@ void draw(Shader& shader, VertexArray& vertexArray, const glm::mat4& transform)
 	glDrawElements(GL_TRIANGLES, vertexArray.get_index_count(), GL_UNSIGNED_INT, nullptr);
 }
 
-void draw(Scope<RenderObject> renderObject)
-{
-	renderObject->shader->bind();
-	renderObject->vertexArray->bind();
-
-	renderObject->shader->set_mat4("u_viewProjection", Renderer::s_viewProjectionMatrix);
-	renderObject->shader->set_mat4("u_transform", renderObject->transform);
-
-	glDrawElements(GL_TRIANGLES, renderObject->vertexArray->get_index_count(), GL_UNSIGNED_INT, nullptr);
-}
-
-
 }	// namespace RenderAPI
 
 glm::mat4 Renderer::s_viewProjectionMatrix = glm::mat4(1.f);
@@ -89,18 +78,19 @@ void Renderer::clear_render_queue()
 
 void Renderer::draw_queue() const
 {
+	RenderAPI::clear();
+
 	for (auto& o : m_renderQueue)
 	{
 		o->shader->bind();
 		o->vertexArray->bind();
 
-		o->shader->set_mat4("u_viewProjection", s_viewProjectionMatrix);
+//		RenderAPI::draw(*o);
+		o->shader->set_mat4("u_viewProjection", Renderer::s_viewProjectionMatrix);
 		o->shader->set_mat4("u_transform", o->transform);
 
-//		o->shader->set_mat4("MVP", s_viewProjectionMatrix * o->transform);
-
-//		o->shader->set_mat4("MVP", o->transform);
 		glDrawElements(GL_TRIANGLES, o->vertexArray->get_index_count(), GL_UNSIGNED_INT, nullptr);
-
 	}
+
+	RenderAPI::swap_buffers();
 }

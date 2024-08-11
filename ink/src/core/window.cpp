@@ -5,9 +5,13 @@
 
 #include <iostream>
 
+WindowProps Window::s_windowProps = NULL;
+
 void framebuffer_size_callback(GLFWwindow *wind, int width, int height)
 {
     glViewport(0, 0, width, height);
+	std::cout << "Window resized\n";
+	Window::set_window_dimensions(width, height);
 }
 
 Window::Window(const WindowProps &props)
@@ -17,6 +21,8 @@ Window::Window(const WindowProps &props)
         std::cerr << "Failed to initialize GLFW\n";
         exit(1);
     }
+
+	s_windowProps = props;
 
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -53,8 +59,18 @@ GLFWwindow *Window::get_glfw_window()
     return m_window;
 }
 
-Window *Window::create(const WindowProps &props)
+i32 Window::get_window_width()
 {
-    Window *win = new Window(props);
-    return win;
+	return s_windowProps.width;
+}
+
+i32 Window::get_window_height()
+{
+	return s_windowProps.height;
+}
+
+void Window::set_window_dimensions(i32 width, i32 height)
+{
+	s_windowProps.width = width;
+	s_windowProps.height = height;
 }

@@ -1,7 +1,7 @@
 #ifndef INK_WINDOW_H
 #define INK_WINDOW_H
 
-#include <stdint.h>
+#include <typedefs.h>
 
 struct GLFWwindow;
 
@@ -29,11 +29,11 @@ void framebuffer_size_callback(GLFWwindow *wind, int width, int height);
 
 struct WindowProps
 {
-    uint32_t width;
-    uint32_t height;
+    i32 width;
+    i32 height;
     const char *title;
 
-    WindowProps(uint32_t width = 800, uint32_t height = 600, const char *title = "Window")
+    WindowProps(i32 width = 800, i32 height = 600, const char *title = "Window")
         : width(width), height(height), title(title)
     {}
 };
@@ -51,7 +51,12 @@ public:
 
     GLFWwindow *get_glfw_window();
 
-    static Window *create(const WindowProps &props = WindowProps());
+	static WindowProps s_windowProps;
+
+	static i32 get_window_width();
+	static i32 get_window_height();
+
+	static void set_window_dimensions(i32 width, i32 height);
 
 private:
     GLFWwindow *m_window;
