@@ -9,11 +9,16 @@
 
 class CollisionEvent : public Event
 {
+public:
     Entity *entityA;
     Entity *entityB;
 
-    EventType get_event_type() {
-        return EventType::app_update;
+    EventType get_event_type() const override {
+        return get_static_type();
+    }
+
+    static EventType get_static_type() {
+        return EventType::collision_update;
     }
 
     CollisionEvent(Entity *a, Entity *b) : entityA(a), entityB(b) {}

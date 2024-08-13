@@ -7,7 +7,9 @@ enum class EventType
     window_resize,
     window_close,
     app_tick,
-    app_update
+    app_update,
+    collision_update,
+    physics_update
 };
 
 class Event
@@ -28,7 +30,7 @@ public:
     template <typename T, typename F>
     bool Dispatch(const F& func)
     {
-        if (_event.get_event_type == T::get_static_type())
+        if (_event.get_event_type() == T::get_static_type())
         {
             _event.m_handled |= func(static_cast<T&>(_event));
             return true;

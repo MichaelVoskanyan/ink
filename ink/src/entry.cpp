@@ -4,9 +4,28 @@
 #include <vector>
 #include <memory>
 
-void collision_handler(Event& e)
+bool collision_handler(Event& e)
 {
-    std::cout << "bababooey at: " << glfwGetTime() << std::endl;
+    std::cout << "Collision at: " << glfwGetTime() << std::endl;
+    CollisionEvent* collision_event = static_cast<CollisionEvent*>(&e);
+    std::shared_ptr<C_PhysicsBody> playerPhysics = collision_event->entityA->get_component<C_PhysicsBody>();
+    std::shared_ptr<C_PhysicsBody> blockPhysics = collision_event->entityB->get_component<C_PhysicsBody>();
+    std::shared_ptr<C_BoxCollider> playerCollider = collision_event->entityA->get_component<C_BoxCollider>();
+    std::shared_ptr<C_BoxCollider> blockCollider = collision_event->entityA->get_component<C_BoxCollider>();
+    glm::vec3 direction = collision_event->entityA->m_position - collision_event->entityB->m_position;
+    float adjustDistance = 1.f - glm::length(direction);
+    std::cout << "Adjust position by " << adjustDistance << std::endl;
+    collision_event->entityA->m_position = collision_event->entityA->m_position + glm::vec3(0.f, adjustDistance, 0.f);
+    glm::vec3 currVel = playerPhysics->velocity();
+    if (glm::length(currVel) < 0.25) {
+        currVel.y = 0.f;
+        playerPhysics->acceleration(glm::vec3(0.f, 0.f, 0.f));
+    }
+    else {
+        currVel.y = currVel.y * -0.9f;
+    }
+    playerPhysics->velocity(currVel);
+    return true;
 }
 
 class Ink : public Application
@@ -116,7 +135,9 @@ public:
             if(C_BoxCollider::check_collision(*playerCol, *blockCol))
             {
                 std::cout << "Collision" << std::endl;
-                EventDispatcher col_event(CollisionEvent(playerCol->get_owner(), blockCol->get_owner()));
+                CollisionEvent col_event(playerCol->get_owner(), blockCol->get_owner());
+                EventDispatcher dispatcher(col_event);
+                dispatcher.Dispatch<CollisionEvent>(collision_handler);
             }
             renderer->draw_queue();
             glfwPollEvents();
