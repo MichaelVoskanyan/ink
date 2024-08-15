@@ -8,12 +8,12 @@
 #include "ecs/entity.h"
 #include "ecs/component.h"
 #include "ecs/components/c_render_object.h"
-#include "ecs/components/c_character_controller.h"
 #include "ecs/components/c_physics_body.h"
 #include "ecs/components/c_box_collider.h"
 
 #include "event/event.h"
 #include "event/collision_event.h"
+#include "event/movement_event.h"
 
 #include "core/window.h"
 #include "core/application.h"

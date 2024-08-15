@@ -84,7 +84,8 @@
         "execution": "cpp",
         "print": "cpp",
         "queue": "cpp",
-        "stack": "cpp"
+        "stack": "cpp",
+        "unordered_set": "cpp"
     },
     "C_Cpp.default.compilerPath": "cl.exe",
     "cmake.configureOnOpen": false

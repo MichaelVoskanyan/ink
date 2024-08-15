@@ -9,7 +9,8 @@ enum class EventType
     app_tick,
     app_update,
     collision_update,
-    physics_update
+    physics_update,
+    movement_update
 };
 
 class Event
@@ -24,22 +25,21 @@ public:
 class EventDispatcher
 {
 public:
-    EventDispatcher(Event& event)
-        : _event(event) {}
+    EventDispatcher(Event &event) : _event(event) {}
 
     template <typename T, typename F>
-    bool Dispatch(const F& func)
+    bool Dispatch(const F &func)
     {
-        if (_event.get_event_type() == T::get_static_type())
+        if(_event.get_event_type() == T::get_static_type())
         {
-            _event.m_handled |= func(static_cast<T&>(_event));
+            _event.m_handled |= func(static_cast<T &>(_event));
             return true;
         }
         return false;
     }
 
 private:
-    Event& _event;
+    Event &_event;
 };
 
 #endif // INK_EVENT_H

@@ -46,21 +46,26 @@ public:
         return nullptr;
     }
 
-private:
-    std::vector<std::shared_ptr<Component>> m_components;
+    const int getId()
+    {
+        return id;
+    }
 
-public:
     void init();
     void start();
     void update(float deltaTime);
     void late_update();
 
     /* -- Raw Transform Member Vars -- */
-public:
     glm::vec3 m_position;
     glm::quat m_rotation;
     glm::vec3 m_scale;
     float m_size;
+
+private:
+    std::vector<std::shared_ptr<Component>> m_components;
+    static int id_counter;
+    int id;
 };
 
 #endif
