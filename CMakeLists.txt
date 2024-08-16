@@ -37,7 +37,6 @@ set(SOURCE_PHYSICS
     ink/src/physics/physics_base.h
     ink/src/event/event.h
     ink/src/event/collision_event.h
-
     ink/src/physics/physics_base.cpp
 )
 
@@ -45,14 +44,12 @@ set(SOURCE_ECS
     ink/src/ecs/component.h
     ink/src/ecs/entity.h
     ink/src/ecs/components/c_render_object.h
-    ink/src/ecs/components/c_character_controller.h
     ink/src/ecs/components/c_physics_body.h
     ink/src/ecs/components/c_box_collider.h
 
 
     ink/src/ecs/entity.cpp
     ink/src/ecs/components/c_render_object.cpp
-    ink/src/ecs/components/c_character_controller.cpp
     ink/src/ecs/components/c_physics_body.cpp
     ink/src/ecs/components/c_box_collider.cpp
 )

@@ -14,28 +14,28 @@ glm::vec3 C_BoxCollider::get_pos() const
     return this->m_owner->m_position;
 }
 
-bool C_BoxCollider::check_collision(C_BoxCollider a, C_BoxCollider b)
+glm::vec2 C_BoxCollider::check_collision(C_BoxCollider a, C_BoxCollider b)
 {
     glm::vec3 posA = a.get_pos(), posB = b.get_pos();
 
-    bool checkARight =
-        (posA.x + a.m_width / 2 >= posB.x - b.m_width / 2) && (posA.x + a.m_width / 2 <= posB.x + b.m_width / 2);
-    bool checkALeft =
-        (posA.x - a.m_width / 2 <= posB.x + b.m_width / 2) && (posA.x - a.m_width / 2 >= posB.x - b.m_width / 2);
+    glm::vec2 overlap(0.f, 0.f);
 
-    bool checkX = checkARight || checkALeft;
+    float checkRight = posA.x + a.m_width / 2 - (posB.x - b.m_width / 2);
 
-    if(!checkX)
+    float checkLeft = posB.x + b.m_width / 2 - (posA.x - a.m_width / 2);
+
+    if(checkRight > 0 && checkLeft > 0)
     {
-        return false;
+        overlap.x = std::min(checkRight, checkLeft);
     }
 
-    bool checkATop =
-        (posA.y + a.m_height / 2 >= posB.y - b.m_height / 2) && (posA.y + a.m_height / 2 <= posB.y + b.m_height / 2);
-    bool checkABottom =
-        (posA.y - a.m_width / 2 <= posB.y + b.m_height / 2) && (posA.y - a.m_width / 2 >= posB.y - b.m_height / 2);
+    float checkTop = posA.y + a.m_height / 2 - (posB.y - b.m_height / 2);
 
-    bool checkY = checkATop || checkABottom;
+    float checkBottom = posB.y + b.m_height / 2 - (posA.y - a.m_height / 2);
 
-    return checkX && checkY;
+    if(checkTop > 0 && checkBottom > 0)
+    {
+        overlap.y = std::min(checkTop, checkBottom);
+    }
+    return overlap;
 }

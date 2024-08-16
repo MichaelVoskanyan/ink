@@ -5,7 +5,7 @@
 class C_BoxCollider : public Component
 {
 public:
-    C_BoxCollider(Entity *owner) :Component(owner) {}
+    C_BoxCollider(Entity *owner) : Component(owner) {}
 
     void init() override;
     void start() override;
@@ -14,7 +14,7 @@ public:
 
     glm::vec3 get_pos() const;
 
-    static bool check_collision(C_BoxCollider a, C_BoxCollider b); // AABB collisions
+    static glm::vec2 check_collision(C_BoxCollider a, C_BoxCollider b); // AABB collisions
 
 public:
     float m_width, m_height;
