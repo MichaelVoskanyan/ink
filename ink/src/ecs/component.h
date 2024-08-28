@@ -5,22 +5,22 @@
 #include <glm/glm.hpp>
 
 /* -- Forward Declaration -- */
-class Entity;
+class entity_t;
 
-class Component
+class component_t
 {
 protected:
-    Entity *m_owner;
+    entity_t *owner_;
 
 public:
-    Component(Entity *owner) :m_owner(owner) {}
+    component_t(entity_t *owner) :owner_(owner) {}
 
-    virtual void init() = 0;
-    virtual void start() = 0;
-    virtual void update(float deltaTime) = 0;
-    virtual void late_update() = 0;
+    virtual void Init() = 0;
+    virtual void Start() = 0;
+    virtual void Update(float deltaTime) = 0;
+    virtual void LateUpdate() = 0;
 
-    inline Entity* get_owner() const { return m_owner; }
+    inline entity_t* GetOwner() const { return owner_; }
 };
 
 #endif

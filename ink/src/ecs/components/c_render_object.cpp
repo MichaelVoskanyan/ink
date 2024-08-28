@@ -3,53 +3,52 @@
 
 #include <utility>
 
-C_RenderObject::~C_RenderObject()
+cRenderObject_t::~cRenderObject_t()
 {
-	m_renderObject.reset();
+	renderObject_.reset();
 }
 
-void C_RenderObject::init_render_object(Ref<RenderObject> renderObj)
+void cRenderObject_t::InitRenderObject(Ref<renderObject_t> renderObj)
 {
-	m_renderObject = std::move(renderObj);
-	Renderer::get_instance()->queue_render_object(m_renderObject);
+	renderObject_ = std::move(renderObj);
+	renderer_t::GetInstance()->QueueRenderObject(renderObject_);
 }
 
-void C_RenderObject::init_render_object(Ref<VertexArray> vertexArray, Ref<Shader> shader)
+void cRenderObject_t::InitRenderObject(Ref<vertexArray_t> vertexArray, Ref<shader_t> shader)
 {
-	m_renderObject = std::make_shared<RenderObject>(vertexArray, shader, glm::mat4(1.f));
-	Renderer::get_instance()->queue_render_object(m_renderObject);
+	renderObject_ = std::make_shared<renderObject_t>(vertexArray, shader, glm::mat4(1.f));
+	renderer_t::GetInstance()->QueueRenderObject(renderObject_);
 }
 
-void C_RenderObject::clear_render_object()
+void cRenderObject_t::ClearRenderObject()
 {
-	auto renderInstance = Renderer::get_instance();
-	renderInstance->remove_from_queue(m_renderObject);
-	m_renderObject.reset();
+	auto renderInstance = renderer_t::GetInstance();
+	renderInstance->RemoveFromQueue(renderObject_);
+	renderObject_.reset();
 }
 
-void C_RenderObject::update_transform_matrix()
+void cRenderObject_t::UpdateTransformMatrix()
 {
 	auto transform = glm::mat4(1.f);
-	transform = glm::translate(transform, m_owner->m_position);
-	transform = transform * glm::mat4_cast(m_owner->m_rotation);
-	transform = glm::scale(transform, m_owner->m_scale);
+	transform = glm::translate(transform, owner_->position_);
+	transform = transform * glm::mat4_cast(owner_->rotation_);
+	transform = glm::scale(transform, owner_->scale_);
 
-	m_renderObject->transform = transform;
+	renderObject_->transform = transform;
 }
-void C_RenderObject::init()
+void cRenderObject_t::Init()
 {
 
 }
-void C_RenderObject::start()
+void cRenderObject_t::Start()
 {
 
 }
-void C_RenderObject::update(float deltaTime)
+void cRenderObject_t::Update(float deltaTime)
 {
-	update_transform_matrix();
+	UpdateTransformMatrix();
 }
-void C_RenderObject::late_update()
+void cRenderObject_t::LateUpdate()
 {
 
 }
-

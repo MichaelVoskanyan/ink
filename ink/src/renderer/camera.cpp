@@ -1,29 +1,29 @@
 #include <renderer/camera.h>
 
-Camera *Camera::s_instance = nullptr;
+camera_t *camera_t::s_instance = nullptr;
 
-Camera *Camera::get_instance()
+camera_t *camera_t::GetInstance()
 {
     if(s_instance == nullptr)
     {
-        s_instance = new Camera();
+        s_instance = new camera_t();
     }
     return s_instance;
 }
 
-void Camera::set_pos(glm::vec3 pos)
+void camera_t::SetPosition(glm::vec3 pos)
 {
-	m_position = pos;
+	position_ = pos;
 }
 
-glm::mat4 Camera::get_projection(int width, int height)
+glm::mat4 camera_t::GetProjection(int width, int height)
 {
-	m_projection = glm::perspective(glm::radians(m_fov), (float)width / (float)height, m_nearClipPlane, m_farClipPlane);
-    return m_projection;
+	projection_ = glm::perspective(glm::radians(fov_), (float)width / (float)height, nearClipPlane_, farClipPlane_);
+    return projection_;
 }
 
-glm::mat4 Camera::get_view()
+glm::mat4 camera_t::GetView()
 {
-	m_view = glm::lookAt(m_position, m_position + m_front, m_up);
-    return m_view;
+	view_ = glm::lookAt(position_, position_ + front_, up_);
+    return view_;
 }

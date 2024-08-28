@@ -3,53 +3,53 @@
 
 #include <typedefs.h>
 
-class IndexBuffer
+class indexBuffer_t
 {
 private:
-    u32 m_rendererID;
-    u32 m_count;
+    u32 rendererID_;
+    u32 count_;
 
 public:
-    IndexBuffer(const Vec<u32> &indices);
-    ~IndexBuffer();
+    indexBuffer_t(const Vec<u32> &indices);
+    ~indexBuffer_t();
 
-    void bind() const;
-    void unbind() const;
+    void Bind() const;
+    void Unbind() const;
 
-    u32 get_count() const;
+    u32 GetCount() const;
 };
 
-class VertexBuffer
+class vertexBuffer_t
 {
 private:
-    u32 m_rendererID;
-    u32 m_size;
+    u32 rendererID;
+    u32 size_;
 
 public:
-    VertexBuffer(const Vec<f32> &vertices);
-    ~VertexBuffer();
+    vertexBuffer_t(const Vec<f32> &vertices);
+    ~vertexBuffer_t();
 
-    void bind() const;
-    void unbind() const;
+    void Bind() const;
+    void Unbind() const;
 };
 
-class VertexArray
+class vertexArray_t
 {
 private:
-    u32 m_rendererID;
-    Scope<VertexBuffer> m_vertexBuffer;
-    Scope<IndexBuffer> m_indexBuffer;
+    u32 rendererID_;
+    Scope<vertexBuffer_t> vertexBuffer_;
+    Scope<indexBuffer_t> indexBuffer_;
 
 public:
-    VertexArray(const Vec<f32> &vertices, const Vec<u32> &indices);
-    VertexArray(Scope<VertexBuffer> vertBuf, Scope<IndexBuffer> indexBuf);
+    vertexArray_t(const Vec<f32> &vertices, const Vec<u32> &indices);
+    vertexArray_t(Scope<vertexBuffer_t> vertBuf, Scope<indexBuffer_t> indexBuf);
 
-    ~VertexArray();
+    ~vertexArray_t();
 
-    void bind() const;
-    void unbind() const;
+    void Bind() const;
+    void Unbind() const;
 
-    u32 get_index_count() const;
+    u32 GetIndexCount() const;
 };
 
 #endif

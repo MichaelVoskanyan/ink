@@ -10,21 +10,21 @@
 // --------------------------
 // -- Forward Declarations --
 // --------------------------
-class Window;
-class Entity;
+class window_t;
+class entity_t;
 
-class Application
+class application_t
 {
 protected:
-    Scope<Window> m_window; // Window class handle
-    f32 m_deltaTime = 0, m_lastFrame = 0, m_currentTime = 0; // Delta time
-    Vec<Ref<Entity>> m_entities; // queue of Entities.
+    Scope<window_t> window_; // Window class handle
+    f32 deltaTime_ = 0, m_lastFrame = 0, m_currentTime = 0; // Delta time
+    Vec<Ref<entity_t>> entities_; // queue of Entities.
 
 public:
-    virtual ~Application() {}
+    virtual ~application_t() {}
 
-    virtual void start() {}
-    virtual void run() {}
+    virtual void Start() {}
+    virtual void Run() {}
 };
 
 #endif

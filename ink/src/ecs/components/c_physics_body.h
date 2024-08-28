@@ -2,27 +2,27 @@
 
 #include "ecs/component.h"
 
-class C_PhysicsBody : public Component
+class cPhysicsBody_t : public component_t
 {
 public:
-    C_PhysicsBody(Entity *owner) :Component(owner) {}
+    cPhysicsBody_t(entity_t *owner) :component_t(owner) {}
 
-    void init() override;
-    void start() override;
-    void update(float deltaTime) override;
-    void late_update() override;
+    void Init() override;
+    void Start() override;
+    void Update(float deltaTime) override;
+    void LateUpdate() override;
     // PhysicsBody(glm::vec3 position, glm::vec3 size);
 
-    void velocity(glm::vec3 v);
-    glm::vec3 velocity() const;
+    void Velocity(glm::vec3 v);
+    glm::vec3 Velocity() const;
 
-    void acceleration(glm::vec3 a);
-    glm::vec3 acceleration() const;
+    void Acceleration(glm::vec3 a);
+    glm::vec3 Acceleration() const;
 
-    void update_position_ref(float deltaTime, glm::vec3 &position);
+    void UpdatePositionRef(float deltaTime, glm::vec3 &position);
 
 private:
-    glm::vec3 m_acceleration;
-    glm::vec3 m_velocity;
-    const float GRAVITY = 1.5f; // acceleration due to gravity
+    glm::vec3 acceleration_;
+    glm::vec3 velocity_;
+    const float kGravity_ = 1.5f; // acceleration due to gravity
 };

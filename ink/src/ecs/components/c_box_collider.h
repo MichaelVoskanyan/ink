@@ -2,20 +2,20 @@
 
 #include "ecs/component.h"
 
-class C_BoxCollider : public Component
+class cBoxCollider_t : public component_t
 {
 public:
-    C_BoxCollider(Entity *owner) : Component(owner) {}
+    cBoxCollider_t(entity_t *owner) : component_t(owner) {}
 
-    void init() override;
-    void start() override;
-    void update(float deltaTime) override;
-    void late_update() override;
+    void Init() override;
+    void Start() override;
+    void Update(float deltaTime) override;
+    void LateUpdate() override;
 
-    glm::vec3 get_pos() const;
+    glm::vec3 GetPosition() const;
 
-    static glm::vec2 check_collision(C_BoxCollider a, C_BoxCollider b); // AABB collisions
+    static glm::vec2 CheckCollision(cBoxCollider_t a, cBoxCollider_t b); // AABB collisions
 
 public:
-    float m_width, m_height;
+    float width_, height_;
 };

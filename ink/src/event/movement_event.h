@@ -7,26 +7,26 @@
 #include <typedefs.h>
 #include <memory>
 
-class MovementEvent : public Event
+class movementEvent_t : public event_t
 {
 public:
-    int keyPress;
-    float deltaTime;
-    std::shared_ptr<Entity> player;
+    int keyPress_;
+    float deltaTime_;
+    std::shared_ptr<entity_t> player_;
 
-    EventType get_event_type() const override
+    eventType_t GetEventType() const override
     {
-        return get_static_type();
+        return GetStaticType();
     }
 
-    static EventType get_static_type()
+    static eventType_t GetStaticType()
     {
-        return EventType::movement_update;
+        return eventType_t::MovementUpdate;
     }
 
-    MovementEvent(int keyPress, float deltaTime, std::shared_ptr<Entity> player)
-        : keyPress(keyPress), deltaTime(deltaTime), player(player) {};
-    ~MovementEvent() {}
+    movementEvent_t(int keyPress, float deltaTime, std::shared_ptr<entity_t> player)
+        : keyPress_(keyPress), deltaTime_(deltaTime), player_(player) {};
+    ~movementEvent_t() {}
 };
 
 #endif // INK_MOVEMENT_EVENT

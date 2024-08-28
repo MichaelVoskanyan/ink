@@ -1,36 +1,36 @@
 #include <ecs/entity.h>
 
-int Entity::id_counter = 0;
+int entity_t::s_idCounter = 0;
 
-void Entity::init()
+void entity_t::Init()
 {
-    id = id_counter++;
-    for(int i = m_components.size() - 1; i >= 0; i--)
+    id_ = s_idCounter++;
+    for(int i = components_.size() - 1; i >= 0; i--)
     {
-        m_components[i]->init();
+        components_[i]->Init();
     }
 }
 
-void Entity::start()
+void entity_t::Start()
 {
-    for(int i = m_components.size() - 1; i >= 0; i--)
+    for(int i = components_.size() - 1; i >= 0; i--)
     {
-        m_components[i]->start();
+        components_[i]->Start();
     }
 }
 
-void Entity::update(float deltaTime)
+void entity_t::Update(float deltaTime)
 {
-    for(int i = m_components.size() - 1; i >= 0; i--)
+    for(int i = components_.size() - 1; i >= 0; i--)
     {
-        m_components[i]->update(deltaTime);
+        components_[i]->Update(deltaTime);
     }
 }
 
-void Entity::late_update()
+void entity_t::LateUpdate()
 {
-    for(int i = m_components.size() - 1; i >= 0; i--)
+    for(int i = components_.size() - 1; i >= 0; i--)
     {
-        m_components[i]->late_update();
+        components_[i]->LateUpdate();
     }
 }

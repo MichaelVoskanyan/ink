@@ -7,25 +7,25 @@
 #include <ecs/components/c_box_collider.h>
 #include <typedefs.h>
 
-class CollisionEvent : public Event
+class collisionEvent_t : public event_t
 {
 public:
-    Entity *entityA;
-    Entity *entityB;
+    entity_t *entityA;
+    entity_t *entityB;
     glm::vec2 overlap;
 
-    EventType get_event_type() const override
+    eventType_t GetEventType() const override
     {
-        return get_static_type();
+        return GetStaticType();
     }
 
-    static EventType get_static_type()
+    static eventType_t GetStaticType()
     {
-        return EventType::collision_update;
+        return eventType_t::CollisionUpdate;
     }
 
-    CollisionEvent(Entity *a, Entity *b, glm::vec2 overlap) : entityA(a), entityB(b), overlap(overlap) {}
-    ~CollisionEvent()
+    collisionEvent_t(entity_t *a, entity_t *b, glm::vec2 overlap) : entityA(a), entityB(b), overlap(overlap) {}
+    ~collisionEvent_t()
     {
         entityA = entityB = nullptr;
     }

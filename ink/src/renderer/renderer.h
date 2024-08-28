@@ -8,50 +8,50 @@
 
 #include <glm/glm.hpp>
 
-struct RenderObject
+struct renderObject_t
 {
-    Ref<VertexArray> vertexArray;
-    Ref<Shader> shader;
+    Ref<vertexArray_t> vertexArray;
+    Ref<shader_t> shader;
     glm::mat4 transform;
 
-    RenderObject(Ref<VertexArray> vertexArray, Ref<Shader> shader, glm::mat4 transform);
+    renderObject_t(Ref<vertexArray_t> vertexArray, Ref<shader_t> shader, glm::mat4 transform);
 };
 
-namespace RenderAPI
+namespace ogl
 {
 
-void set_clear_color(const glm::vec4 &color);
-void set_clear_color(f32 r, f32 g, f32 b, f32 a);
-void clear();
-void swap_buffers();
-void draw(Shader &shader, VertexArray &vertexArray, const glm::mat4 &transform);
-void draw(RenderObject &renderObject);
+void SetClearColor(const glm::vec4 &color);
+void SetClearColor(f32 r, f32 g, f32 b, f32 a);
+void Clear();
+void SwapBuffers();
+void Draw(shader_t &shader, vertexArray_t &vertexArray, const glm::mat4 &transform);
+void Draw(renderObject_t &renderObject);
 
-} // namespace RenderAPI
+} // namespace ogl
 
-class Renderer
+class renderer_t
 {
 private:
-    Renderer();
+    renderer_t();
 
 public:
-    Renderer(const Renderer &r) = delete;
-    Renderer &operator=(const Renderer &r) = delete;
+    renderer_t(const renderer_t &r) = delete;
+    renderer_t &operator=(const renderer_t &r) = delete;
 
 private:
-    static Renderer *s_instance;
+    static renderer_t *s_instance;
 
-    Vec<Ref<RenderObject>> m_renderQueue;
+    Vec<Ref<renderObject_t>> renderQueue_;
 
 public:
     static glm::mat4 s_viewProjectionMatrix;
 
-    static Renderer *get_instance();
-    void queue_render_object(const Ref<RenderObject> &renderObject);
-    void remove_from_queue(const Ref<RenderObject> &renderObject);
-    void clear_render_queue();
+    static renderer_t *GetInstance();
+    void QueueRenderObject(const Ref<renderObject_t> &renderObject);
+    void RemoveFromQueue(const Ref<renderObject_t> &renderObject);
+    void ClearRenderQueue();
 
-    void draw_queue() const;
+    void DrawQueue() const;
 };
 
 #endif

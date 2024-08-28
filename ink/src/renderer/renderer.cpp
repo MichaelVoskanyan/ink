@@ -3,94 +3,94 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-RenderObject::RenderObject(Ref<VertexArray> vertexArray, Ref<Shader> shader, glm::mat4 transform)
+renderObject_t::renderObject_t(Ref<vertexArray_t> vertexArray, Ref<shader_t> shader, glm::mat4 transform)
 		:vertexArray(vertexArray), shader(shader), transform(transform)
 { }
 
-namespace RenderAPI
+namespace ogl
 {
 
-void set_clear_color(const glm::vec4& color)
+void SetClearColor(const glm::vec4& color)
 {
 	glClearColor(color.r, color.g, color.b, color.a);
 }
 
-void set_clear_color(f32 r, f32 g, f32 b, f32 a)
+void SetClearColor(f32 r, f32 g, f32 b, f32 a)
 {
 	glClearColor(r, g, b, a);
 }
 
-void clear()
+void Clear()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
-void swap_buffers()
+void SwapBuffers()
 {
 	glfwSwapBuffers(glfwGetCurrentContext());
 }
 
-void draw(Shader& shader, VertexArray& vertexArray, const glm::mat4& transform)
+void Draw(shader_t& shader, vertexArray_t& vertexArray, const glm::mat4& transform)
 {
-	shader.bind();
-	vertexArray.bind();
+	shader.Bind();
+	vertexArray.Bind();
 
-	shader.set_mat4("u_viewProjection", Renderer::s_viewProjectionMatrix);
-	shader.set_mat4("u_transform", transform);
+	shader.SetMat4("u_viewProjection", renderer_t::s_viewProjectionMatrix);
+	shader.SetMat4("u_transform", transform);
 
-	glDrawElements(GL_TRIANGLES, vertexArray.get_index_count(), GL_UNSIGNED_INT, nullptr);
+	glDrawElements(GL_TRIANGLES, vertexArray.GetIndexCount(), GL_UNSIGNED_INT, nullptr);
 }
 
-}	// namespace RenderAPI
+}	// namespace ogl
 
-glm::mat4 Renderer::s_viewProjectionMatrix = glm::mat4(1.f);
-Renderer* Renderer::s_instance = nullptr;
+glm::mat4 renderer_t::s_viewProjectionMatrix = glm::mat4(1.f);
+renderer_t* renderer_t::s_instance = nullptr;
 
-Renderer::Renderer()
+renderer_t::renderer_t()
 {
-	m_renderQueue = Vec<Ref<RenderObject>>();
+	renderQueue_ = Vec<Ref<renderObject_t>>();
 }
 
-Renderer *Renderer::get_instance()
+renderer_t *renderer_t::GetInstance()
 {
 	if (nullptr == s_instance)
 	{
-		s_instance = new Renderer();
+		s_instance = new renderer_t();
 	}
 	return s_instance;
 }
 
-void Renderer::queue_render_object(const Ref<RenderObject>& renderObject)
+void renderer_t::QueueRenderObject(const Ref<renderObject_t>& renderObject)
 {
-	m_renderQueue.push_back(renderObject);
+	renderQueue_.push_back(renderObject);
 }
 
-void Renderer::remove_from_queue(const Ref<RenderObject> &renderObject)
+void renderer_t::RemoveFromQueue(const Ref<renderObject_t> &renderObject)
 {
-	auto obj = std::find(m_renderQueue.begin(), m_renderQueue.end(), renderObject);
-	m_renderQueue.erase(obj);
+	auto obj = std::find(renderQueue_.begin(), renderQueue_.end(), renderObject);
+	renderQueue_.erase(obj);
 }
 
-void Renderer::clear_render_queue()
+void renderer_t::ClearRenderQueue()
 {
-	m_renderQueue.clear();
+	renderQueue_.clear();
 }
 
-void Renderer::draw_queue() const
+void renderer_t::DrawQueue() const
 {
-	RenderAPI::clear();
+	ogl::Clear();
 
-	for (auto& o : m_renderQueue)
+	for (auto& o : renderQueue_)
 	{
-		o->shader->bind();
-		o->vertexArray->bind();
+		o->shader->Bind();
+		o->vertexArray->Bind();
 
 //		RenderAPI::draw(*o);
-		o->shader->set_mat4("u_viewProjection", Renderer::s_viewProjectionMatrix);
-		o->shader->set_mat4("u_transform", o->transform);
+		o->shader->SetMat4("u_viewProjection", renderer_t::s_viewProjectionMatrix);
+		o->shader->SetMat4("u_transform", o->transform);
 
-		glDrawElements(GL_TRIANGLES, o->vertexArray->get_index_count(), GL_UNSIGNED_INT, nullptr);
+		glDrawElements(GL_TRIANGLES, o->vertexArray->GetIndexCount(), GL_UNSIGNED_INT, nullptr);
 	}
 
-	RenderAPI::swap_buffers();
+	ogl::SwapBuffers();
 }

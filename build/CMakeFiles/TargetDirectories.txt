@@ -1,6 +1,9 @@
-C:/Users/HarlanVerthein/Desktop/Projects/Ink/build/CMakeFiles/Ink.dir
-C:/Users/HarlanVerthein/Desktop/Projects/Ink/build/CMakeFiles/ALL_BUILD.dir
-C:/Users/HarlanVerthein/Desktop/Projects/Ink/build/CMakeFiles/ZERO_CHECK.dir
-C:/Users/HarlanVerthein/Desktop/Projects/Ink/build/vendor/glfw/CMakeFiles/ALL_BUILD.dir
-C:/Users/HarlanVerthein/Desktop/Projects/Ink/build/vendor/glfw/src/CMakeFiles/glfw.dir
-C:/Users/HarlanVerthein/Desktop/Projects/Ink/build/vendor/glfw/src/CMakeFiles/update_mappings.dir
+/Users/michaelvoskanyan/Dev/Ink/build/CMakeFiles/Ink.dir
+/Users/michaelvoskanyan/Dev/Ink/build/CMakeFiles/edit_cache.dir
+/Users/michaelvoskanyan/Dev/Ink/build/CMakeFiles/rebuild_cache.dir
+/Users/michaelvoskanyan/Dev/Ink/build/vendor/glfw/CMakeFiles/edit_cache.dir
+/Users/michaelvoskanyan/Dev/Ink/build/vendor/glfw/CMakeFiles/rebuild_cache.dir
+/Users/michaelvoskanyan/Dev/Ink/build/vendor/glfw/src/CMakeFiles/glfw.dir
+/Users/michaelvoskanyan/Dev/Ink/build/vendor/glfw/src/CMakeFiles/update_mappings.dir
+/Users/michaelvoskanyan/Dev/Ink/build/vendor/glfw/src/CMakeFiles/edit_cache.dir
+/Users/michaelvoskanyan/Dev/Ink/build/vendor/glfw/src/CMakeFiles/rebuild_cache.dir

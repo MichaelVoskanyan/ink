@@ -9,7 +9,7 @@ struct GLFWwindow;
  * Basic framebuffer size callback function. Effectively just used for function
  * pointer within glfwSetFramebufferSizeCallback(GLFWwindow *, function_name);
  */
-void framebuffer_size_callback(GLFWwindow *wind, int width, int height);
+void FramebufferSizeCallback(GLFWwindow *wind, int width, int height);
 
 // struct Window {
 //   // Data for window creation
@@ -27,39 +27,41 @@ void framebuffer_size_callback(GLFWwindow *wind, int width, int height);
 //   void InitWindow();
 // };
 
-struct WindowProps
+struct windowProps_t
 {
     i32 width;
     i32 height;
     const char *title;
 
-    WindowProps(i32 width = 800, i32 height = 600, const char *title = "Window")
+    windowProps_t(i32 width = 800, i32 height = 600, const char *title = "Window")
         : width(width), height(height), title(title)
     {}
 };
 
-class Window
+class window_t
 {
 public:
-    Window(const WindowProps &props = WindowProps());
-    ~Window() {}
+    window_t(const windowProps_t &props = windowProps_t());
+    ~window_t() {}
 
-    void update();
+    void Update();
 
-    void set_vsync(bool enabled);
-    bool is_vsync() const;
+    void SetVSync(bool enabled);
+    bool IsVSync() const;
 
-    GLFWwindow *get_glfw_window();
+    GLFWwindow *GetGlfwWindow();
 
-	static WindowProps s_windowProps;
 
-	static i32 get_window_width();
-	static i32 get_window_height();
+	static i32 GetWindowWidth();
+	static i32 GetWindowHeight();
 
-	static void set_window_dimensions(i32 width, i32 height);
+	static void SetWindowDimensions(i32 width, i32 height);
+
+public:
+	static windowProps_t s_windowProps;
 
 private:
-    GLFWwindow *m_window;
+    GLFWwindow *window_;
 };
 
 #endif

@@ -1,45 +1,45 @@
 #ifndef INK_EVENT_H
 #define INK_EVENT_H
 
-enum class EventType
+enum class eventType_t
 {
-    none = 0,
-    window_resize,
-    window_close,
-    app_tick,
-    app_update,
-    collision_update,
-    physics_update,
-    movement_update
+    None = 0,
+    WindowResize,
+    WindowClose,
+    AppTick,
+    AppUpdate,
+    CollisionUpdate,
+    PhysicsUpdate,
+    MovementUpdate
 };
 
-class Event
+class event_t
 {
 public:
-    virtual ~Event() = default;
-    virtual EventType get_event_type() const = 0;
+    virtual ~event_t() = default;
+    virtual eventType_t GetEventType() const = 0;
 
-    bool m_handled = false;
+    bool handled_ = false;
 };
 
-class EventDispatcher
+class eventDispatcher_t
 {
 public:
-    EventDispatcher(Event &event) : _event(event) {}
+    eventDispatcher_t(event_t &event) : event_(event) {}
 
     template <typename T, typename F>
     bool Dispatch(const F &func)
     {
-        if(_event.get_event_type() == T::get_static_type())
+        if(event_.GetEventType() == T::GetStaticType())
         {
-            _event.m_handled |= func(static_cast<T &>(_event));
+            event_.handled_ |= func(static_cast<T &>(event_));
             return true;
         }
         return false;
     }
 
 private:
-    Event &_event;
+    event_t &event_;
 };
 
 #endif // INK_EVENT_H

@@ -5,16 +5,16 @@
 
 #include <iostream>
 
-WindowProps Window::s_windowProps = NULL;
+windowProps_t window_t::s_windowProps = NULL;
 
-void framebuffer_size_callback(GLFWwindow *wind, int width, int height)
+void FramebufferSizeCallback(GLFWwindow *wind, int width, int height)
 {
     glViewport(0, 0, width, height);
 	std::cout << "Window resized\n";
-	Window::set_window_dimensions(width, height);
+	window_t::SetWindowDimensions(width, height);
 }
 
-Window::Window(const WindowProps &props)
+window_t::window_t(const windowProps_t &props)
 {
     if(!glfwInit())
     {
@@ -28,16 +28,16 @@ Window::Window(const WindowProps &props)
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	m_window = glfwCreateWindow((int)props.width, (int)props.height, props.title, nullptr, nullptr);
+	window_ = glfwCreateWindow((int)props.width, (int)props.height, props.title, nullptr, nullptr);
 
-    if(!m_window)
+    if(!window_)
     {
         std::cerr << "Failed to create GLFW window\n";
         glfwTerminate();
         exit(1);
     }
 
-    glfwMakeContextCurrent(m_window);
+    glfwMakeContextCurrent(window_);
 
     if(!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
     {
@@ -45,31 +45,31 @@ Window::Window(const WindowProps &props)
         exit(1);
     }
 
-    glfwSetFramebufferSizeCallback(m_window, framebuffer_size_callback);
+    glfwSetFramebufferSizeCallback(window_, FramebufferSizeCallback);
 
     glClearColor(0.2f, 0.2f, 0.3f, 1.f);
 }
 
-GLFWwindow *Window::get_glfw_window()
+GLFWwindow *window_t::GetGlfwWindow()
 {
-    if(!m_window)
+    if(!window_)
     {
         return nullptr;
     }
-    return m_window;
+    return window_;
 }
 
-i32 Window::get_window_width()
+i32 window_t::GetWindowWidth()
 {
 	return s_windowProps.width;
 }
 
-i32 Window::get_window_height()
+i32 window_t::GetWindowHeight()
 {
 	return s_windowProps.height;
 }
 
-void Window::set_window_dimensions(i32 width, i32 height)
+void window_t::SetWindowDimensions(i32 width, i32 height)
 {
 	s_windowProps.width = width;
 	s_windowProps.height = height;

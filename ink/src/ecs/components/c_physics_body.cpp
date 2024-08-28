@@ -3,45 +3,45 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 
-void C_PhysicsBody::init()
+void cPhysicsBody_t::Init()
 {
-	m_acceleration = glm::vec3(0.0f, -GRAVITY, 0.0f);
-	m_velocity = glm::vec3(0.0f);
+	acceleration_ = glm::vec3(0.0f, -kGravity_, 0.0f);
+	velocity_ = glm::vec3(0.0f);
 }
 
-void C_PhysicsBody::start() {}
+void cPhysicsBody_t::Start() {}
 
-void C_PhysicsBody::update(float deltaTime)
+void cPhysicsBody_t::Update(float deltaTime)
 {
-	update_position_ref(deltaTime, m_owner->m_position);
+	UpdatePositionRef(deltaTime, owner_->position_);
 }
 
-void C_PhysicsBody::late_update() {}
+void cPhysicsBody_t::LateUpdate() {}
 
-void C_PhysicsBody::velocity(glm::vec3 v)
+void cPhysicsBody_t::Velocity(glm::vec3 v)
 {
-	m_velocity = v;
+	velocity_ = v;
 }
 
-glm::vec3 C_PhysicsBody::velocity() const
+glm::vec3 cPhysicsBody_t::Velocity() const
 {
-    return m_velocity;
+    return velocity_;
 }
 
-void C_PhysicsBody::acceleration(glm::vec3 a)
+void cPhysicsBody_t::Acceleration(glm::vec3 a)
 {
-	m_acceleration = a;
+	acceleration_ = a;
 }
 
-glm::vec3 C_PhysicsBody::acceleration() const
+glm::vec3 cPhysicsBody_t::Acceleration() const
 {
-    return m_acceleration;
+    return acceleration_;
 }
 
-void C_PhysicsBody::update_position_ref(float deltaTime, glm::vec3 &position)
+void cPhysicsBody_t::UpdatePositionRef(float deltaTime, glm::vec3 &position)
 {
-	m_velocity += m_acceleration * deltaTime;
-    position += m_velocity * deltaTime;
+	velocity_ += acceleration_ * deltaTime;
+    position += velocity_ * deltaTime;
     // std::cout << "Accel: " << _acceleration.x << ", " << _acceleration.y << std::endl;
     // std::cout << "Velocity: " << _velocity.x << ", " << _velocity.y << std::endl;
     // std::cout << "Position: " << position.x << ", " << position.y << std::endl;

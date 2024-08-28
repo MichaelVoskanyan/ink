@@ -5,25 +5,25 @@
 #include <ecs/component.h>
 #include "renderer/renderer.h"
 
-class C_RenderObject : public Component
+class cRenderObject_t : public component_t
 {
 public:
-	explicit C_RenderObject(Entity* owner) : Component(owner) {}
-	~C_RenderObject();
+	explicit cRenderObject_t(entity_t* owner) : component_t(owner) {}
+	~cRenderObject_t();
 
-	void init_render_object(Ref<RenderObject> renderObj);
-	void init_render_object(Ref<VertexArray> vertexArray, Ref<Shader> shader);
-	void clear_render_object();
+	void InitRenderObject(Ref<renderObject_t> renderObj);
+	void InitRenderObject(Ref<vertexArray_t> vertexArray, Ref<shader_t> shader);
+	void ClearRenderObject();
 
-	void update_transform_matrix();
+	void UpdateTransformMatrix();
 
-	void init() override;
-	void start() override;
-	void update(float deltaTime) override;
-	void late_update() override;
+	void Init() override;
+	void Start() override;
+	void Update(float deltaTime) override;
+	void LateUpdate() override;
 
 private:
-	Ref<RenderObject> m_renderObject;
+	Ref<renderObject_t> renderObject_;
 };
 
 #endif

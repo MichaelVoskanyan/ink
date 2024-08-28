@@ -12,7 +12,7 @@ include_directories(
 
 add_subdirectory(vendor/glfw)
 
-link_directories("vendor/glfw/src/Debug")
+# link_directories("vendor/glfw/src/Debug")
 
 set(CMAKE_BUILD_TYPE Debug)
 
@@ -21,11 +21,35 @@ set (GLFW_BUILD_TESTS OFF CACHE INTERNAL "Build the GLFW test programs")
 set (GLFW_BUILD_DOCS OFF CACHE INTERNAL "Build the GLFW documentations")
 set (GLFW_INSTALL OFF CACHE INTERNAL "Generate installation target")
 
-set(SOURCE_RENDERER
+set(SOURCE
+    ink/src/typedefs.h
+    ink/src/ink.h
+
     ink/src/renderer/shader.h
     ink/src/renderer/camera.h
     ink/src/renderer/buffers.h
     ink/src/renderer/renderer.h
+
+    ink/src/ecs/component.h
+    ink/src/ecs/entity.h
+    ink/src/ecs/components/c_render_object.h
+    ink/src/ecs/components/c_physics_body.h
+    ink/src/ecs/components/c_box_collider.h
+
+    ink/src/physics/physics_base.h
+    ink/src/event/event.h
+    ink/src/event/collision_event.h
+
+    vendor/glad/src/glad.c
+    ink/src/core/window.cpp
+    ink/src/entry.cpp
+
+    ink/src/ecs/entity.cpp
+    ink/src/ecs/components/c_render_object.cpp
+    ink/src/ecs/components/c_physics_body.cpp
+    ink/src/ecs/components/c_box_collider.cpp
+
+    ink/src/physics/physics_base.cpp
 
     ink/src/renderer/shader.cpp
     ink/src/renderer/camera.cpp
@@ -33,34 +57,7 @@ set(SOURCE_RENDERER
     ink/src/renderer/renderer.cpp
 )
 
-set(SOURCE_PHYSICS
-    ink/src/physics/physics_base.h
-    ink/src/event/event.h
-    ink/src/event/collision_event.h
-    ink/src/physics/physics_base.cpp
-)
-
-set(SOURCE_ECS
-    ink/src/ecs/component.h
-    ink/src/ecs/entity.h
-    ink/src/ecs/components/c_render_object.h
-    ink/src/ecs/components/c_physics_body.h
-    ink/src/ecs/components/c_box_collider.h
-
-
-    ink/src/ecs/entity.cpp
-    ink/src/ecs/components/c_render_object.cpp
-    ink/src/ecs/components/c_physics_body.cpp
-    ink/src/ecs/components/c_box_collider.cpp
-)
-
-set(SOURCE
-    vendor/glad/src/glad.c
-    ink/src/core/window.cpp
-    ink/src/entry.cpp
-)
-
-add_executable(Ink 
+add_executable(Ink
     ${SOURCE_RENDERER}
     ${SOURCE_ECS}
     ${SOURCE_PHYSICS}
